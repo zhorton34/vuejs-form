@@ -1,0 +1,11 @@
+.idea
+node_modules
+.npm-debug.log
+npm-debug.log
+test/benchmark.js
+test/implementations.js
+coverage
+.nyc_output
+.DS_Store
+package-lock.json
+docs/.vuepress/dist/*

@@ -1,0 +1,58 @@
+{
+  "name": "vuejs-form",
+  "version": "1.0.0",
+  "description": "Form wrapper simplifying developer ability to access, check, fill, and pass input data",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "yarn production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhorton34/vuejs-form.git"
+  },
+  "keywords": [
+    "vue form",
+    "form",
+    "vue",
+    "vuejs form",
+    "vuejs forms",
+    "form vuejs",
+    "vue forms package",
+    "vue form input"
+  ],
+  "author": "Zachary Horton",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/zhorton34/vuejs-form/issues"
+  },
+  "homepage": "https://github.com/zhorton34/vuejs-form#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-preset-env": "^1.6.1",
+    "benchmark": "^2.1.0",
+    "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "laravel-mix": "^5.0.4",
+    "mocha": "^7.1.2",
+    "node-sass": "^4.11.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}

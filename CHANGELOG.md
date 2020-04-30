@@ -1,0 +1,2 @@
+## Misc
+- Added ``CHANGELOG.md``
