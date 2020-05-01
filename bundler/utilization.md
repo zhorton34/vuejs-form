@@ -13,18 +13,66 @@ LoginForm.name // ''
 LoginForm.name = 'sarah'
 LoginForm.name // 'sarah'
 
-LoginForm.all() // { name: 'sarah', email: '', password: '' }
-LoginForm.has('email', 'password') // true
-LoginForm.has('email', 'something') // false
-LoginForm.hasAny('email', 'something') // true
-LoginForm.empty('email') // true
-LoginForm.filled('email') // false
-LoginForm.filled('name') // true
-LoginForm.boolean('email') // false
-LoginForm.only('email', 'name') // { email: '', name: '', }
-LoginForm.except('password') // { email: '', name: '' }
-LoginForm.input('password') // ''
-LoginForm.input('email', 'example@gmail.com') // 'example@gmail.com'
+form({
+    name: '',
+    email: '',
+    password: '',
+}).all() // { name: 'sarah', email: '', password: '' }
+form({
+    name: '',
+    email: '',
+    password: '',
+}).has('email', 'password') // true
+form({
+    name: '',
+    email: '',
+    password: '',
+}).has('email', 'something') // false
+form({
+    name: '',
+    email: '',
+    password: '',
+}).hasAny('email', 'something') // true
+form({
+    name: '',
+    email: '',
+    password: '',
+}).empty('email') // true
+form({
+    name: '',
+    email: '',
+    password: '',
+}).filled('email') // false
+form({
+    name: '',
+    email: '',
+    password: '',
+}).filled('name') // true
+form({
+    name: '',
+    email: '',
+    password: '',
+}).boolean('email') // false
+form({
+    name: '',
+    email: '',
+    password: '',
+}).only('email', 'name') // { email: '', name: '', }
+form({
+    name: '',
+    email: '',
+    password: '',
+}).except('password') // { email: '', name: '' }
+form({
+    name: '',
+    email: '',
+    password: '',
+}).input('password') // ''
+form({
+    name: '',
+    email: '',
+    password: '',
+}).input('email', 'example@gmail.com') // 'example@gmail.com'
 
 LoginForm.fill({
     name: 'tim',
