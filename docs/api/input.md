@@ -9,5 +9,4 @@ ExampleForm.input('id') // false
 ExampleForm.input('id', 1) // 1
 ExampleForm.input('name', 'tim') // sarah
 ```
-
 [View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/input.js)

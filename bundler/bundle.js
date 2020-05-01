@@ -8,6 +8,8 @@ const header = readFileSync('bundler/header.md', 'utf-8');
 const installation = readFileSync('bundler/installation.md', 'utf-8');
 const utilization = readFileSync('bundler/utilization.md', 'utf-8');
 const api = readFileSync('bundler/api.md', 'utf-8');
+const vue = readFileSync('bundler/vue.md', 'utf-8');
+
 // const strictnessAndComparisons = readFileSync('bundler/strictness_and_comparisons.md', 'utf-8');
 // const notImplemented = readFileSync('bundler/not_implemented.md', 'utf-8');
 const contribute = readFileSync('bundler/contribute.md', 'utf-8');
@@ -44,6 +46,7 @@ writeFileSync(
 	[
 		header,
 		installation,
+		vue,
 		api,
 		tableOfContents,
 		methodDocumentation,
