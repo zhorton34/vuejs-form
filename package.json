@@ -1,6 +1,6 @@
 {
   "name": "vuejs-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Form wrapper simplifying developer ability to access, check, fill, and pass input data",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,9 @@
   "author": "Zachary Horton",
   "license": "MIT",
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "bugs": {
     "url": "https://github.com/zhorton34/vuejs-form/issues"
