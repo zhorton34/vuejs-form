@@ -4,8 +4,9 @@
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/zhorton34/vuejs-form/blob/master/package.json)
 
 
-> Convenient Wrapper For Form Input Data (Dependency Free ~ Usable Outside Externally From Vue)
+# That Vue Form (Simplified)
 
+> Convenient Wrapper For Form Input Data (Dependency Free ~ Usable Outside Externally From Vue)
 
 
 ### Installation
