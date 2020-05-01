@@ -5,5 +5,4 @@ node_js:
   - '8'
   - '6'
 script:
-  - npm run eslint
   - npm run coverage

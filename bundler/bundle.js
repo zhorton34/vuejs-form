@@ -4,7 +4,7 @@ const { readFileSync, readdirSync, writeFileSync } = require('fs');
 
 // Get all markdown stubs
 const header = readFileSync('bundler/header.md', 'utf-8');
-// const badges = readFileSync('bundler/badges.md', 'utf-8');
+const badges = readFileSync('bundler/badges.md', 'utf-8');
 const installation = readFileSync('bundler/installation.md', 'utf-8');
 const utilization = readFileSync('bundler/utilization.md', 'utf-8');
 const api = readFileSync('bundler/api.md', 'utf-8');
@@ -44,6 +44,7 @@ const methodDocumentation = methods.map((file) => {
 writeFileSync(
 	'README.md',
 	[
+		badges,
 		header,
 		installation,
 		vue,
