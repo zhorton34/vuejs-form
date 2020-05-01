@@ -1,8 +1,7 @@
 'use strict';
 
-module.exports = function set(data) {
-	this.data = {
-		...this.data,
-		...data
-	}
+module.exports = function set(input = {}) {
+	Object.entries(input).forEach(([key, value]) => {
+			this.data[key] = value;
+	});
 };

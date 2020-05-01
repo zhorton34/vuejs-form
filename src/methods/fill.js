@@ -1,8 +1,9 @@
 'use strict';
 
-module.exports = function fill(data) {
-	this.data = {
-		...data,
-		...this.data,
-	}
+module.exports = function fill(input = {}) {
+	Object.entries(input).forEach(([key, value]) => {
+		if (this.empty(key)) {
+			this.data[key] = value;
+		}
+	});
 };

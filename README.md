@@ -5,13 +5,13 @@
 #### NPM
 
 ```bash
-npm install --save-dev vuejs-form.js
+npm install --save-dev vuejs-form
 ```
 
 #### Yarn
 
 ```bash
-yarn add  --save-dev vuejs-form.js
+yarn add  --save-dev vuejs-form
 ```
 
 

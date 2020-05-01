@@ -1,11 +1,13 @@
 'use strict';
 
-const isEmpty = require('../helpers/isEmpty.js');
-const variadic = require('../helpers/variadic.js');
-const nestedValue = require('../helpers/nestedValue.js');
+const isEmpty = require('../helpers/isEmpty');
+const variadic = require('../helpers/variadic');
 
 module.exports = function empty(...args) {
   	const properties = variadic(args);
 
-	return properties.filter(key => isEmpty(nestedValue(this.data, key))).length === properties.length;
+  	const input = this.data;
+  	const empty = properties.filter(key => isEmpty(input[key]));
+
+	return empty.length === properties.length;
 };

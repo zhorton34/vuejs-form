@@ -3,8 +3,7 @@
 /**
  * Get value of a nested property
  *
- * @param mainObject
- * @param key
+ * @param form
  * @returns {*}
  */
 module.exports = function access(form) {
@@ -16,6 +15,6 @@ module.exports = function access(form) {
 
 		set (target, key, value) {
 			target.data[key] = value
-		}	
+		}
 	})
 };

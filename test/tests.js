@@ -5,7 +5,7 @@ const { it } = require('mocha');
 const { describe } = require('mocha');
 const path = require('path');
 const { expect } = require('chai');
-const collect = require('../dist');
+const form = require('../dist');
 
 let test = process.argv[process.argv.length - 1];
 const runSingleTest = test.indexOf('--') !== -1;
@@ -19,10 +19,10 @@ tests.forEach((file) => {
   describe(file.replace('_test.js', '()'), () => {
     if (!runSingleTest) {
       // eslint-disable-next-line
-      require(path.join(__dirname, 'methods', file))(it, expect, collect);
+      require(path.join(__dirname, 'methods', file))(it, expect, form);
     } else if (runSingleTest && file === test) {
       // eslint-disable-next-line
-      require(path.join(__dirname, 'methods', file))(it, expect, collect);
+      require(path.join(__dirname, 'methods', file))(it, expect, form);
     }
   });
 });

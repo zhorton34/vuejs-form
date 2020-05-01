@@ -95,7 +95,7 @@ var vuejsform =
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n/**\n * Get value of a nested property\n *\n * @param mainObject\n * @param key\n * @returns {*}\n */\n\nmodule.exports = function access(form) {\n  return new Proxy(form, {\n    get: function get(target, key) {\n      return Object.keys(target.data).includes(key) ? target.data[key] : target[key];\n    },\n    set: function set(target, key, value) {\n      target.data[key] = value;\n    }\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/accessor.js?");
+eval("\n/**\n * Get value of a nested property\n *\n * @param form\n * @returns {*}\n */\n\nmodule.exports = function access(form) {\n  return new Proxy(form, {\n    get: function get(target, key) {\n      return Object.keys(target.data).includes(key) ? target.data[key] : target[key];\n    },\n    set: function set(target, key, value) {\n      target.data[key] = value;\n    }\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/accessor.js?");
 
 /***/ }),
 
@@ -107,7 +107,7 @@ eval("\n/**\n * Get value of a nested property\n *\n * @param mainObject\n * @pa
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n/**\n * Determine if a value is empty\n *\n * @param value\n * @returns bool\n */\n\nmodule.exports = function (value) {\n  if (value == null || String.isEmpty(obj)) return true;\n  if (Array.isArray(value)) return value.length === 0;\n\n  for (var key in value) {\n    if (Object.keys(Value, key)) return false;\n  }\n\n  return true;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/isEmpty.js?");
+eval("\n/**\n * Determine if a value is empty\n *\n * @param value\n * @returns bool\n */\n\nmodule.exports = function (value) {\n  if (value === null || value === '') return true;\n  if (Array.isArray(value)) return value.length === 0;\n\n  for (var key in value) {\n    if (Object.keys(value, key)) return false;\n  }\n\n  return true;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/isEmpty.js?");
 
 /***/ }),
 
@@ -179,7 +179,7 @@ eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dist/helpers/isEmpty.js\");\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function empty() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  return properties.filter(function (key) {\n    return isEmpty(nestedValue(_this.data, key));\n  }).length === properties.length;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/empty.js?");
+eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/helpers/isEmpty.js\");\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function empty() {\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  var input = this.data;\n  var empty = properties.filter(function (key) {\n    return isEmpty(input[key]);\n  });\n  return empty.length === properties.length;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/empty.js?");
 
 /***/ }),
 
@@ -215,7 +215,7 @@ eval("\n\nmodule.exports = function extend(method, callback) {\n  if (Object.key
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nmodule.exports = function fill(data) {\n  this.data = _objectSpread(_objectSpread({}, data), this.data);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/fill.js?");
+eval("\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nmodule.exports = function fill() {\n  var _this = this;\n\n  var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  Object.entries(input).forEach(function (_ref) {\n    var _ref2 = _slicedToArray(_ref, 2),\n        key = _ref2[0],\n        value = _ref2[1];\n\n    if (_this.empty(key)) {\n      _this.data[key] = value;\n    }\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/fill.js?");
 
 /***/ }),
 
@@ -227,7 +227,7 @@ eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(obje
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dist/helpers/isEmpty.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function filled(key) {\n  return !isEmpty(this.data, key);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/filled.js?");
+eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/helpers/isEmpty.js\");\n\nmodule.exports = function filled(key) {\n  return !isEmpty(this.data[key]);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/filled.js?");
 
 /***/ }),
 
@@ -275,7 +275,7 @@ eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./d
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(module) {\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dist/helpers/isEmpty.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule[\"export\"] = function input(key) {\n  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n\n  if (!value) {\n    return nestedValue(this.data, key);\n  }\n\n  {\n    return isEmpty(nestedValue(this.data, key)) ? value : nestedValue(this.data, key);\n  }\n};\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/module.js */ \"./node_modules/webpack/buildin/module.js\")(module)))\n\n//# sourceURL=webpack://vuejsform/./dist/methods/input.js?");
+eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dist/helpers/isEmpty.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function input(key) {\n  var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;\n  return isEmpty(nestedValue(this.data, key)) ? defaultValue : nestedValue(this.data, key);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/input.js?");
 
 /***/ }),
 
@@ -335,7 +335,7 @@ eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(obje
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nmodule.exports = function set(data) {\n  this.data = _objectSpread(_objectSpread({}, this.data), data);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/set.js?");
+eval("\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nmodule.exports = function set() {\n  var _this = this;\n\n  var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};\n  Object.entries(input).forEach(function (_ref) {\n    var _ref2 = _slicedToArray(_ref, 2),\n        key = _ref2[0],\n        value = _ref2[1];\n\n    _this.data[key] = value;\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/set.js?");
 
 /***/ }),
 
@@ -347,7 +347,7 @@ eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(obje
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function toArray() {\n  return Object.entries(this.data);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/toArray.js?");
+eval("\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\nfunction _iterableToArrayLimit(arr, i) { if (typeof Symbol === \"undefined\" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nmodule.exports = function toArray() {\n  return Object.entries(this.data).map(function (_ref) {\n    var _ref2 = _slicedToArray(_ref, 2),\n        key = _ref2[0],\n        value = _ref2[1];\n\n    return {\n      key: key,\n      value: value\n    };\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/toArray.js?");
 
 /***/ }),
 
@@ -360,17 +360,6 @@ eval("\n\nmodule.exports = function toArray() {\n  return Object.entries(this.da
 
 "use strict";
 eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nmodule.exports = function wrap(key) {\n  return _defineProperty({}, key, _objectSpread({}, this.data));\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/wrap.js?");
-
-/***/ }),
-
-/***/ "./node_modules/webpack/buildin/module.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/module.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\tmodule.deprecate = function() {};\n\t\tmodule.paths = [];\n\t\t// module.parent = undefined by default\n\t\tif (!module.children) module.children = [];\n\t\tObject.defineProperty(module, \"loaded\", {\n\t\t\tenumerable: true,\n\t\t\tget: function() {\n\t\t\t\treturn module.l;\n\t\t\t}\n\t\t});\n\t\tObject.defineProperty(module, \"id\", {\n\t\t\tenumerable: true,\n\t\t\tget: function() {\n\t\t\t\treturn module.i;\n\t\t\t}\n\t\t});\n\t\tmodule.webpackPolyfill = 1;\n\t}\n\treturn module;\n};\n\n\n//# sourceURL=webpack://vuejsform/(webpack)/buildin/module.js?");
 
 /***/ })
 

@@ -2,8 +2,7 @@
 /**
  * Get value of a nested property
  *
- * @param mainObject
- * @param key
+ * @param form
  * @returns {*}
  */
 

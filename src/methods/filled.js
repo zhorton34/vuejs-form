@@ -1,8 +1,7 @@
 'use strict';
 
-const isEmpty = require('../helpers/isEmpty.js')
-const nestedValue = require('../helpers/nestedValue.js')
+const isEmpty = require('../helpers/isEmpty');
 
 module.exports = function filled(key) {
-	return !isEmpty(this.data, key)
+	return !isEmpty(this.data[key]);
 };
