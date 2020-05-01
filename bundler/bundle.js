@@ -44,10 +44,10 @@ writeFileSync(
 	[
 		header,
 		installation,
-		utilization,
 		api,
 		tableOfContents,
 		methodDocumentation,
+		utilization,
 		contribute,
 		license,
 	].join('\n\n'),
