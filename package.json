@@ -2,7 +2,7 @@
   "name": "vuejs-form",
   "version": "1.0.1",
   "description": "Form wrapper simplifying developer ability to access, check, fill, and pass input data",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "all": "npm run build && npm test",
     "pretest": "npm run transpile",
