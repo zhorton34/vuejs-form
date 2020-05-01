@@ -1,12 +1,10 @@
 [![Travis](https://img.shields.io/travis/zhorton34/vuejs-form/master.svg?style=flat-square)](https://travis-ci.org/zhorton34/vuejs-form/builds)
 [![npm version](https://img.shields.io/npm/v/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
-[![npm downloads](https://img.shields.io/npm/dm/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
 [![npm license](https://img.shields.io/npm/l/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/zhorton34/vuejs-form/blob/master/package.json)
 
 
-# <img src="https://raw.githubusercontent.com/zhorton34/vuejs-form/master/vuejs-form.png" alt="Vue JS Form">
 > Convenient Wrapper For Form Input Data (Dependency Free ~ Usable Outside Externally From Vue)
 
 
@@ -22,49 +20,13 @@ npm install --save-dev vuejs-form
 #### Yarn
 
 ```bash
-yarn add  --save-dev vuejs-form
+yarn add vuejs-form --save
 ```
 
 
 #### Quick Vue Overview (See Entire Form Api Below)
 
-```js
-import form from 'vuejs-form';
-
-export default {
-    data() {
-        return {
-            form: form({
-                name: '',
-                password: ''
-            })
-        }
-    },
-
-    methods: {
-        submit() {
-            // this.form.all()
-            // Or nest the form input using this.form.wrap('data')
-        }
-    }
-}
-</script>
-```
-
-
-```html
-<template>
-    <div class='form-container'>
-        <input type='text' v-model='form.name' />
-        <input type='password' v-model='form.password' />
-
-        <button :disabled="form.empty('name', 'password')" @click='submit' class='btn btn-primary'>
-            Submit
-        </button>
-    </div>
-</template>
-```
-
+# <img src="https://raw.githubusercontent.com/zhorton34/vuejs-form/master/vuejs-form.png" alt="Vue JS Form">
 
 
 
