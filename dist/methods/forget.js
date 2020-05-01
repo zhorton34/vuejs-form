@@ -1,11 +1,16 @@
 'use strict';
 
-module.exports = function forget(key) {
-  if (Array.isArray(this.data)) {
-    this.data.splice(key, 1);
-  } else {
-    delete this.data[key];
+var variadic = require('../helpers/variadic');
+
+module.exports = function forget() {
+  var _this = this;
+
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
   }
 
-  return this;
+  var properties = variadic(args);
+  properties.forEach(function (property) {
+    return delete _this.data[property];
+  });
 };

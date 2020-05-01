@@ -12,7 +12,10 @@ module.exports = function has() {
   }
 
   var properties = variadic(args);
-  return properties.filter(function (key) {
+
+  var valueExists = function valueExists(key) {
     return nestedValue(_this.data, key);
-  }).length === properties.length;
+  };
+
+  return properties.every(valueExists);
 };

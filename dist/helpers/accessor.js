@@ -13,6 +13,7 @@ module.exports = function access(form) {
     },
     set: function set(target, key, value) {
       target.data[key] = value;
+      return target.data[key] === value;
     }
   });
 };

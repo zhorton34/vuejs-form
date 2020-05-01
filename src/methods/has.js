@@ -5,6 +5,7 @@ const nestedValue = require('../helpers/nestedValue.js');
 
 module.exports = function has(...args) {
   const properties = variadic(args);
+  const valueExists = key => nestedValue(this.data, key);
 
-  return properties.filter(key => nestedValue(this.data, key)).length === properties.length;
+  return properties.every(valueExists);
 };

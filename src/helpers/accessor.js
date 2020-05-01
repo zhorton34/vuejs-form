@@ -14,7 +14,9 @@ module.exports = function access(form) {
 		    	: target[key],
 
 		set (target, key, value) {
-			target.data[key] = value
+			target.data[key] = value;
+
+			return target.data[key] === value;
 		}
 	})
 };

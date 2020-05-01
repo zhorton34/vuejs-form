@@ -95,7 +95,19 @@ var vuejsform =
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n/**\n * Get value of a nested property\n *\n * @param form\n * @returns {*}\n */\n\nmodule.exports = function access(form) {\n  return new Proxy(form, {\n    get: function get(target, key) {\n      return Object.keys(target.data).includes(key) ? target.data[key] : target[key];\n    },\n    set: function set(target, key, value) {\n      target.data[key] = value;\n    }\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/accessor.js?");
+eval("\n/**\n * Get value of a nested property\n *\n * @param form\n * @returns {*}\n */\n\nmodule.exports = function access(form) {\n  return new Proxy(form, {\n    get: function get(target, key) {\n      return Object.keys(target.data).includes(key) ? target.data[key] : target[key];\n    },\n    set: function set(target, key, value) {\n      target.data[key] = value;\n      return target.data[key] === value;\n    }\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/accessor.js?");
+
+/***/ }),
+
+/***/ "./dist/helpers/exists.js":
+/*!********************************!*\
+  !*** ./dist/helpers/exists.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n/**\n * Determine if a key value pair is missing\n *\n * @param value\n * @returns boolean\n */\n\nmodule.exports = function (value) {\n  return typeof value !== \"undefined\";\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/exists.js?");
 
 /***/ }),
 
@@ -107,7 +119,7 @@ eval("\n/**\n * Get value of a nested property\n *\n * @param form\n * @returns 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n/**\n * Determine if a value is empty\n *\n * @param value\n * @returns bool\n */\n\nmodule.exports = function (value) {\n  if (value === null || value === '') return true;\n  if (Array.isArray(value)) return value.length === 0;\n\n  for (var key in value) {\n    if (Object.keys(value, key)) return false;\n  }\n\n  return true;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/isEmpty.js?");
+eval("\n/**\n * Determine if a value is empty\n *\n * @param value\n * @returns boolean\n */\n\nmodule.exports = function (value) {\n  if (value === null || value === '') return true;\n  if (Array.isArray(value)) return value.length === 0;\n\n  for (var key in value) {\n    if (Object.keys(value, key)) return false;\n  }\n\n  return true;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/helpers/isEmpty.js?");
 
 /***/ }),
 
@@ -167,7 +179,7 @@ eval("\n\nmodule.exports = function all() {\n  return this.data;\n};\n\n//# sour
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function _boolean(key) {\n  return [1, \"1\", true, \"true\", \"on\", \"yes\"].includes(nestedValue(this.data, key));\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/boolean.js?");
+eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function _boolean(key) {\n  var truthy = [1, \"1\", true, \"true\", \"on\", \"yes\"];\n  return truthy.includes(nestedValue(this.data, key));\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/boolean.js?");
 
 /***/ }),
 
@@ -179,7 +191,7 @@ eval("\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/helpers/isEmpty.js\");\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function empty() {\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  var input = this.data;\n  var empty = properties.filter(function (key) {\n    return isEmpty(input[key]);\n  });\n  return empty.length === properties.length;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/empty.js?");
+eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/helpers/isEmpty.js\");\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function empty() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  var valueIsEmpty = function valueIsEmpty(key) {\n    return isEmpty(nestedValue(_this.data, key));\n  };\n\n  return properties.some(valueIsEmpty);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/empty.js?");
 
 /***/ }),
 
@@ -227,7 +239,7 @@ eval("\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iter
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/helpers/isEmpty.js\");\n\nmodule.exports = function filled(key) {\n  return !isEmpty(this.data[key]);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/filled.js?");
+eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/helpers/isEmpty.js\");\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function filled() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  var valueIsFilled = function valueIsFilled(key) {\n    return isEmpty(nestedValue(_this.data, key)) === false;\n  };\n\n  return properties.every(valueIsFilled);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/filled.js?");
 
 /***/ }),
 
@@ -239,7 +251,7 @@ eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty */ \"./dist/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function forget(key) {\n  if (Array.isArray(this.data)) {\n    this.data.splice(key, 1);\n  } else {\n    delete this.data[key];\n  }\n\n  return this;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/forget.js?");
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function forget() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  properties.forEach(function (property) {\n    return delete _this.data[property];\n  });\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/forget.js?");
 
 /***/ }),
 
@@ -251,7 +263,7 @@ eval("\n\nmodule.exports = function forget(key) {\n  if (Array.isArray(this.data
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function has() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  return properties.filter(function (key) {\n    return nestedValue(_this.data, key);\n  }).length === properties.length;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/has.js?");
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function has() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  var valueExists = function valueExists(key) {\n    return nestedValue(_this.data, key);\n  };\n\n  return properties.every(valueExists);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/has.js?");
 
 /***/ }),
 
@@ -263,7 +275,7 @@ eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./d
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function has() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  return properties.filter(function (key) {\n    return nestedValue(_this.data, key);\n  }).length > 0;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/hasAny.js?");
+eval("\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function hasAny() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  var valuesExist = function valuesExist(key) {\n    return nestedValue(_this.data, key);\n  };\n\n  return properties.some(valuesExist);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/hasAny.js?");
 
 /***/ }),
 
@@ -311,7 +323,7 @@ eval("\n\nvar accessor = __webpack_require__(/*! ../helpers/accessor */ \"./dist
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dist/helpers/isEmpty.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue.js */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function missing(key) {\n  return isEmpty(nestedValue(this.data, key));\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/missing.js?");
+eval("\n\nvar exists = __webpack_require__(/*! ../helpers/exists */ \"./dist/helpers/exists.js\");\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nvar nestedValue = __webpack_require__(/*! ../helpers/nestedValue */ \"./dist/helpers/nestedValue.js\");\n\nmodule.exports = function missing() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n\n  var valueIsMissing = function valueIsMissing(key) {\n    return !exists(nestedValue(_this.data, key));\n  };\n\n  return properties.some(valueIsMissing);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/missing.js?");
 
 /***/ }),
 
@@ -323,7 +335,7 @@ eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dis
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function only() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  return properties.reduce(function (only, field) {\n    return _objectSpread(_defineProperty({}, field, _this.data[field]), only);\n  }, {});\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/only.js?");
+eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function only() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  return properties.reduce(function (only, field) {\n    return _objectSpread(_defineProperty({}, field, _this.data[field]), only);\n  }, {});\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/only.js?");
 
 /***/ }),
 

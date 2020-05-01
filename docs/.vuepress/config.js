@@ -1,7 +1,7 @@
 const { readdirSync } = require('fs');
 
 module.exports = {
-  title: 'vuejs-form.js',
+  title: 'vuejs-form',
   description: 'Simplified, dependency free wrapper for easily interacting with form input data.',
   themeConfig: {
     nav: [

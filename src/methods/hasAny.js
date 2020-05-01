@@ -3,8 +3,9 @@
 const variadic = require('../helpers/variadic.js');
 const nestedValue = require('../helpers/nestedValue.js');
 
-module.exports = function has(...args) {
+module.exports = function hasAny(...args) {
   const properties = variadic(args);
+  const valuesExist = key => nestedValue(this.data, key);
 
-  return properties.filter(key => nestedValue(this.data, key)).length > 0;
+  return properties.some(valuesExist);
 };

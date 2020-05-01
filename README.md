@@ -185,15 +185,15 @@ ExampleForm.all()
 // { id: 2, name: 'sarah', email: 'sarah@gmail.com' }
 ```
 
-#### `filled(property)`
+#### `filled(propertyOne, propertyTwo, etc...)`
 
 The filled method determine if a value is filled (AKA not empty):
 
 ```js
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
-ExampleForm.filled('id') // false
-ExampleForm.filled('name') // true
+ExampleForm.filled('id', 'name') // false
+ExampleForm.filled('name', 'email') // true
 ```
 
 #### `forget(propertyOne, propertyTwo, etc...)`
@@ -274,6 +274,7 @@ const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' })
 ExampleForm.missing('id') // false
 ExampleForm.missing('something') // true
 ExampleForm.missing('name', 'email') // false
+ExampleForm.missing('name', 'email', 'something') // true
 ```
 
 

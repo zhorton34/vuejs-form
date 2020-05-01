@@ -3,7 +3,7 @@
  * Determine if a value is empty
  *
  * @param value
- * @returns bool
+ * @returns boolean
  */
 
 module.exports = function (value) {
