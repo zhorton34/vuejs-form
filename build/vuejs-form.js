@@ -143,7 +143,7 @@ eval("\n/**\n * Variadic helper function\n *\n * @param args\n * @returns {*}\n 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n'strict';\n\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction Form(input) {\n  if (input !== undefined && !Array.isArray(input) && _typeof(input) !== 'object') {\n    this.data = [input];\n  } else if (input instanceof this.constructor) {\n    this.data = input.all();\n  } else {\n    this.data = input || {};\n  }\n}\n\nForm.prototype.all = __webpack_require__(/*! ./methods/all */ \"./dist/methods/all.js\");\nForm.prototype[\"boolean\"] = __webpack_require__(/*! ./methods/boolean */ \"./dist/methods/boolean.js\");\nForm.prototype.empty = __webpack_require__(/*! ./methods/empty */ \"./dist/methods/empty.js\");\nForm.prototype.except = __webpack_require__(/*! ./methods/except */ \"./dist/methods/except.js\");\nForm.prototype.fill = __webpack_require__(/*! ./methods/fill */ \"./dist/methods/fill.js\");\nForm.prototype.filled = __webpack_require__(/*! ./methods/filled */ \"./dist/methods/filled.js\");\nForm.prototype.forget = __webpack_require__(/*! ./methods/forget */ \"./dist/methods/forget.js\");\nForm.prototype.has = __webpack_require__(/*! ./methods/has */ \"./dist/methods/has.js\");\nForm.prototype.hasAny = __webpack_require__(/*! ./methods/hasAny */ \"./dist/methods/hasAny.js\");\nForm.prototype.input = __webpack_require__(/*! ./methods/input */ \"./dist/methods/input.js\");\nForm.prototype.keys = __webpack_require__(/*! ./methods/keys */ \"./dist/methods/keys.js\");\nForm.prototype.missing = __webpack_require__(/*! ./methods/missing */ \"./dist/methods/missing.js\");\nForm.prototype.only = __webpack_require__(/*! ./methods/only */ \"./dist/methods/only.js\");\nForm.prototype.set = __webpack_require__(/*! ./methods/set */ \"./dist/methods/set.js\");\nForm.prototype.toArray = __webpack_require__(/*! ./methods/toArray */ \"./dist/methods/toArray.js\");\nForm.prototype.wrap = __webpack_require__(/*! ./methods/wrap */ \"./dist/methods/wrap.js\");\n\nvar accessor = __webpack_require__(/*! ./helpers/accessor */ \"./dist/helpers/accessor.js\");\n\nvar form = function form(input) {\n  return accessor(new Form(input));\n};\n\nmodule.exports = form;\nmodule.exports.form = form;\nmodule.exports[\"default\"] = form;\nvar example = form({\n  name: 'zak',\n  email: 'zak@cleancode.studio'\n});\nconsole.log(example.data.name);\nexample.name = 'test';\nconsole.log(example.name);\n\n//# sourceURL=webpack://vuejsform/./dist/index.js?");
+eval("\n'strict';\n\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction VueForm(input) {\n  if (input !== undefined && !Array.isArray(input) && _typeof(input) !== 'object') {\n    this.data = [input];\n  } else if (input instanceof this.constructor) {\n    this.data = input.all();\n  } else {\n    this.data = input || {};\n  }\n}\n\nVueForm.prototype.all = __webpack_require__(/*! ./methods/all */ \"./dist/methods/all.js\");\nVueForm.prototype[\"boolean\"] = __webpack_require__(/*! ./methods/boolean */ \"./dist/methods/boolean.js\");\nVueForm.prototype.empty = __webpack_require__(/*! ./methods/empty */ \"./dist/methods/empty.js\");\nVueForm.prototype.except = __webpack_require__(/*! ./methods/except */ \"./dist/methods/except.js\");\nVueForm.prototype.extend = __webpack_require__(/*! ./methods/extend */ \"./dist/methods/extend.js\");\nVueForm.prototype.fill = __webpack_require__(/*! ./methods/fill */ \"./dist/methods/fill.js\");\nVueForm.prototype.filled = __webpack_require__(/*! ./methods/filled */ \"./dist/methods/filled.js\");\nVueForm.prototype.forget = __webpack_require__(/*! ./methods/forget */ \"./dist/methods/forget.js\");\nVueForm.prototype.has = __webpack_require__(/*! ./methods/has */ \"./dist/methods/has.js\");\nVueForm.prototype.hasAny = __webpack_require__(/*! ./methods/hasAny */ \"./dist/methods/hasAny.js\");\nVueForm.prototype.input = __webpack_require__(/*! ./methods/input */ \"./dist/methods/input.js\");\nVueForm.prototype.keys = __webpack_require__(/*! ./methods/keys */ \"./dist/methods/keys.js\");\nVueForm.prototype.make = __webpack_require__(/*! ./methods/make */ \"./dist/methods/make.js\");\nVueForm.prototype.missing = __webpack_require__(/*! ./methods/missing */ \"./dist/methods/missing.js\");\nVueForm.prototype.only = __webpack_require__(/*! ./methods/only */ \"./dist/methods/only.js\");\nVueForm.prototype.set = __webpack_require__(/*! ./methods/set */ \"./dist/methods/set.js\");\nVueForm.prototype.toArray = __webpack_require__(/*! ./methods/toArray */ \"./dist/methods/toArray.js\");\nVueForm.prototype.wrap = __webpack_require__(/*! ./methods/wrap */ \"./dist/methods/wrap.js\");\n\nvar accessor = __webpack_require__(/*! ./helpers/accessor */ \"./dist/helpers/accessor.js\");\n\nvar form = function form(input) {\n  return accessor(new VueForm(input));\n};\n\nmodule.exports = form;\nmodule.exports.form = form;\nmodule.exports[\"default\"] = form;\nmodule.exports.VueForm = VueForm;\n\n//# sourceURL=webpack://vuejsform/./dist/index.js?");
 
 /***/ }),
 
@@ -192,6 +192,18 @@ eval("\n\nvar isEmpty = __webpack_require__(/*! ../helpers/isEmpty.js */ \"./dis
 
 "use strict";
 eval("\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nvar variadic = __webpack_require__(/*! ../helpers/variadic.js */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function except() {\n  var _this = this;\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  var properties = variadic(args);\n  return Object.keys(this.data).filter(function (property) {\n    return !properties.includes(property);\n  }).reduce(function (only, field) {\n    return _objectSpread(_defineProperty({}, field, _this.data[field]), only);\n  }, {});\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/except.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/extend.js":
+/*!********************************!*\
+  !*** ./dist/methods/extend.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function extend(method, callback) {\n  if (Object.keys(this).includes(method)) {\n    return console.error(\"Cant extend form with \".concat(method, \", it already exists\"));\n  }\n\n  this.constructor.prototype[name] = callback;\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/extend.js?");
 
 /***/ }),
 
@@ -276,6 +288,18 @@ eval("/* WEBPACK VAR INJECTION */(function(module) {\n\nvar isEmpty = __webpack_
 
 "use strict";
 eval("\n\nmodule.exports = function keys() {\n  return Object.keys(this.data);\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/keys.js?");
+
+/***/ }),
+
+/***/ "./dist/methods/make.js":
+/*!******************************!*\
+  !*** ./dist/methods/make.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar accessor = __webpack_require__(/*! ../helpers/accessor */ \"./dist/helpers/accessor.js\");\n\nmodule.exports = function make(input) {\n  return accessor(new this.constructor(input));\n};\n\n//# sourceURL=webpack://vuejsform/./dist/methods/make.js?");
 
 /***/ }),
 

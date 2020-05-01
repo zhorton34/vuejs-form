@@ -3,11 +3,11 @@
 #### NPM
 
 ```bash
-npm install vuejs-form.js --save
+npm install --save-dev vuejs-form.js
 ```
 
 #### Yarn
 
 ```bash
-yarn add vuejs-form.js
+yarn add  --save-dev vuejs-form.js
 ```
