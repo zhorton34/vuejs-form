@@ -1,12 +1,12 @@
 'use strict';
 
-var isEmpty = require('../helpers/isEmpty');
-
-var setKeys = require('../helpers/setKeys');
-
 var dataGet = require('../helpers/dataGet');
 
-module.exports = function filled() {
+var isEmpty = require('../helpers/isEmpty');
+
+var setKeys = require('../helpers/setKeys.js');
+
+module.exports = function anyFilled() {
   var _this = this;
 
   var valueFilled = function valueFilled(key) {
@@ -17,5 +17,5 @@ module.exports = function filled() {
     args[_key] = arguments[_key];
   }
 
-  return setKeys(this, args).has().every(valueFilled);
+  return setKeys(this, args).has().some(valueFilled);
 };

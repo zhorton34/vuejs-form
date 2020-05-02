@@ -1,9 +1,7 @@
 'use strict';
 
-const variadic = require('../helpers/variadic');
+const setKeys = require('../helpers/setKeys');
 
 module.exports = function forget(...args) {
-    const properties = variadic(args);
-
-    properties.forEach(property => delete this.data[property]);
+    setKeys(this, args).has().forEach(property => delete this.data[property]);
 };

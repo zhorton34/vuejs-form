@@ -20,4 +20,14 @@ module.exports = (it, expect, form) => {
 
 		expect(example.all()).to.eql({ email: 'example@gmail.com' });
 	});
+
+	it('should forget all input when no parameters are passed', () => {
+		const example = form({ id: 1, name: 'example', email: 'example@gmail.com' });
+
+		expect(example.all()).to.eql({ id: 1, name: 'example', email: 'example@gmail.com' });
+
+		example.forget();
+
+		expect(example.all()).to.eql({});
+	});
 };

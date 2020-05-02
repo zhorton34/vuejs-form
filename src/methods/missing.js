@@ -1,12 +1,11 @@
 'use strict';
 
 const exists = require('../helpers/exists');
-const variadic = require('../helpers/variadic');
-const nestedValue = require('../helpers/nestedValue');
+const setKeys = require('../helpers/setKeys');
+const dataGet = require('../helpers/dataGet');
 
 module.exports = function missing(...args) {
-	const properties = variadic(args);
-	const valueIsMissing = key => !exists(nestedValue(this.data, key));
+	const missing = key => !exists(dataGet(this.data, key));
 
-	return properties.some(valueIsMissing);
+	return setKeys(this, args).has().some(missing);
 };

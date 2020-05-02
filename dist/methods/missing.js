@@ -2,22 +2,20 @@
 
 var exists = require('../helpers/exists');
 
-var variadic = require('../helpers/variadic');
+var setKeys = require('../helpers/setKeys');
 
-var nestedValue = require('../helpers/nestedValue');
+var dataGet = require('../helpers/dataGet');
 
 module.exports = function missing() {
   var _this = this;
+
+  var missing = function missing(key) {
+    return !exists(dataGet(_this.data, key));
+  };
 
   for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
 
-  var properties = variadic(args);
-
-  var valueIsMissing = function valueIsMissing(key) {
-    return !exists(nestedValue(_this.data, key));
-  };
-
-  return properties.some(valueIsMissing);
+  return setKeys(this, args).has().some(missing);
 };

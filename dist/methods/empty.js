@@ -2,22 +2,20 @@
 
 var isEmpty = require('../helpers/isEmpty');
 
-var variadic = require('../helpers/variadic');
+var dataGet = require('../helpers/dataGet');
 
-var nestedValue = require('../helpers/nestedValue');
+var setKeys = require('../helpers/setKeys.js');
 
 module.exports = function empty() {
   var _this = this;
 
-  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-    args[_key] = arguments[_key];
-  }
-
-  var properties = variadic(args);
-
-  var valueIsEmpty = function valueIsEmpty(key) {
-    return isEmpty(nestedValue(_this.data, key));
+  var emptyValue = function emptyValue(key) {
+    return isEmpty(dataGet(_this.data, key));
   };
 
-  return properties.some(valueIsEmpty);
+  for (var _len = arguments.length, properties = new Array(_len), _key = 0; _key < _len; _key++) {
+    properties[_key] = arguments[_key];
+  }
+
+  return setKeys(this, properties).has().some(emptyValue);
 };

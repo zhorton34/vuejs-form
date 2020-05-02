@@ -1,10 +1,10 @@
 'use strict';
 
 const isEmpty = require('../helpers/isEmpty.js');
-const nestedValue = require('../helpers/nestedValue.js');
+const dataGet = require('../helpers/dataGet.js');
 
 module.exports = function input(key, defaultValue = false) {
-	return isEmpty(nestedValue(this.data, key))
-		? defaultValue
-		: nestedValue(this.data, key);
+	const value = dataGet(this.data, key);
+
+	return isEmpty(value) ? defaultValue : value;
 };

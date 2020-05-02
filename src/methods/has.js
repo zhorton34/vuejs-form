@@ -1,11 +1,10 @@
 'use strict';
 
-const variadic = require('../helpers/variadic.js');
-const nestedValue = require('../helpers/nestedValue.js');
+const setKeys = require('../helpers/setKeys');
+const dataGet = require('../helpers/dataGet');
 
 module.exports = function has(...args) {
-  const properties = variadic(args);
-  const valueExists = key => nestedValue(this.data, key);
+  const value = key => dataGet(this.data, key);
 
-  return properties.every(valueExists);
+  return setKeys(this, args).has().every(value);
 };

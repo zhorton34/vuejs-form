@@ -1,6 +1,6 @@
 'use strict';
 
-var variadic = require('../helpers/variadic');
+var setKeys = require('../helpers/setKeys');
 
 module.exports = function forget() {
   var _this = this;
@@ -9,8 +9,7 @@ module.exports = function forget() {
     args[_key] = arguments[_key];
   }
 
-  var properties = variadic(args);
-  properties.forEach(function (property) {
+  setKeys(this, args).has().forEach(function (property) {
     return delete _this.data[property];
   });
 };

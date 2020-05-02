@@ -13,6 +13,7 @@ function VueForm(input) {
   }
 }
 
+VueForm.prototype.anyFilled = require('./methods/anyFilled');
 VueForm.prototype.all = require('./methods/all');
 VueForm.prototype["boolean"] = require('./methods/boolean');
 VueForm.prototype.empty = require('./methods/empty');

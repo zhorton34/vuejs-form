@@ -1,8 +1,9 @@
 'use strict';
 
-const nestedValue = require('../helpers/nestedValue.js')
+const dataGet = require('../helpers/dataGet.js');
 
-module.exports = function boolean(key) {
+module.exports = function boolean(property) {
 	const truthy = [1, "1", true, "true", "on", "yes"];
-	return truthy.includes(nestedValue(this.data, key))
+
+	return truthy.includes(dataGet(this.data, property));
 };

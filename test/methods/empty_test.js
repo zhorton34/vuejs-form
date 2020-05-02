@@ -20,4 +20,12 @@ module.exports = (it, expect, form) => {
 		expect(form({ two: ['yo'] }).empty('two')).to.eql(false);
 		expect(form({ three: { hi: 'world' } }).empty('three')).to.eql(false);
 	});
+
+	it('should check all values when no arguments are provided', () => {
+		expect(form({ one: '', two: '', three: '' }).empty()).to.eql(true);
+		expect(form({ one: 'first', two: '', three: '' }).empty()).to.eql(true);
+		expect(form({ one: '', two: ['second'], three: '' }).empty()).to.eql(true);
+		expect(form({ one: '', two: '', three: { third: 'test' } }).empty()).to.eql(true);
+		expect(form({ one: 'first', two: ['second'], three: { third: 'test' } }).empty()).to.eql(false);
+	});
 };
