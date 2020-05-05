@@ -6,7 +6,7 @@
 # Use vuejs-validations Along Side vuejs-form
 (Created in parrallel, but keeps validation and form logic decoupled)
 https://github.com/zhorton34/vuejs-validators
-```
+```js
 <template>
     <div>
         <input type='text' v-model='form.name' /> <br>
