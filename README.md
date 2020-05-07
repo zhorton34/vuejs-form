@@ -9,6 +9,10 @@ https://github.com/zhorton34/vuejs-validators
 ```js
 <template>
     <div>
+        <div v-for="(message, key) in errors" :key="`${key}.error`">
+            {{ message }}
+        </div>
+        
         <input type='text' v-model='form.name' /> <br>
         <input type='email' v-model='form.email' /> <br>
         <input type='password' v-model='form.password' /> <br>
@@ -31,33 +35,41 @@ https://github.com/zhorton34/vuejs-validators
                 email: '', 
                 password: '', 
                 confirm_password: ''
-            }),
-
-            validator: validator(form, {
+            }).use(validator, {
                 name: 'required|min:5',
                 email: 'email|min:5|required',
                 password: 'required|same:confirm_password',
                 confirm_password: 'min:6',
+            }).messages({
+                'name.required': ':attribute is a required field and this is a custom message',
             }),
        }),
 
-        created() {            
-            this.validator.data = this.form.all();
-        },
+       watch: {
+        'form.data': {
+            deep: true,
+            handler: 'input',
+            immediate: false,
+        }
+       },
         
+        computed: {
+            errors() {
+                return this.form.getErrors()
+            }
+        },
         methods: {
-            failed(validator) {
-                console.log('validator errors: ', validator.errors)
+            input(current, was) {
+                this.form.validate();
             },
-            passed(validator) {
-                console.log('passed: ', validator);
+            failed() {
+                console.log('form errors: ', this.form.getErrors.all())
             },
-
+            passed() {
+                console.log('form passed: ', this.form.all());
+            },
             submit() {
-                this.validator.passed(validator => this.passed(validator))
-                this.validator.failed(validator => this.failed(validator))
-
-                this.validator.validate();
+                return this.form.getErrors().any() ? this.failed() : this.passed();
             }
         }
     }
