@@ -4,7 +4,7 @@ var dataGet = require('../helpers/dataGet');
 
 var isEmpty = require('../helpers/isEmpty');
 
-var setKeys = require('../helpers/setKeys.js');
+var fieldsOf = require('../helpers/fieldsOf');
 
 module.exports = function anyFilled() {
   var _this = this;
@@ -17,5 +17,5 @@ module.exports = function anyFilled() {
     args[_key] = arguments[_key];
   }
 
-  return setKeys(this, args).has().some(valueFilled);
+  return fieldsOf(this, args).has().some(valueFilled);
 };

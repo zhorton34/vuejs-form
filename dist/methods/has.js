@@ -1,8 +1,8 @@
 'use strict';
 
-var setKeys = require('../helpers/setKeys');
-
 var dataGet = require('../helpers/dataGet');
+
+var fieldsOf = require('../helpers/fieldsOf');
 
 module.exports = function has() {
   var _this = this;
@@ -15,5 +15,5 @@ module.exports = function has() {
     args[_key] = arguments[_key];
   }
 
-  return setKeys(this, args).has().every(value);
+  return fieldsOf(this, args).has().every(value);
 };

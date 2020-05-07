@@ -45,31 +45,33 @@ yarn add vuejs-form --save
 
 <script>
     import form from 'vuejs-form'
-    import validator from 'vuejs-validators'
+    import validatable from 'vuejs-validators'
 
     export default {
        data: () => ({
-            form: form({
+            form: form(validatable, {
                 name: '',
                 email: '',
                 password: '',
                 confirm_password: ''
-            }).use(validator, {
+            })
+            .rules({
                 name: 'required|min:5',
                 email: 'email|min:5|required',
                 password: 'required|same:confirm_password',
                 confirm_password: 'min:6',
-            }).messages({
+            })
+            .messages({
                 'name.required': ':attribute is a required field and this is a custom message',
             }),
        }),
 
        watch: {
-        'form.data': {
-            deep: true,
-            handler: 'input',
-            immediate: false,
-        }
+            'form.data': {
+                deep: true,
+                handler: 'input',
+                immediate: false,
+            }
        },
 
         computed: {
@@ -78,6 +80,7 @@ yarn add vuejs-form --save
             }
         },
         methods: {
+            /** Called every time form data is changed */
             input(current, was) {
                 this.form.validate();
             },
@@ -104,7 +107,6 @@ All available methods
 - [boolean](#boolean)
 - [empty](#empty)
 - [except](#except)
-- [extend](#extend)
 - [fill](#fill)
 - [filled](#filled)
 - [forget](#forget)
@@ -112,6 +114,7 @@ All available methods
 - [hasAny](#hasany)
 - [input](#input)
 - [keys](#keys)
+- [macro](#macro)
 - [make](#make)
 - [missing](#missing)
 - [only](#only)
@@ -194,45 +197,6 @@ ExampleForm.except('id', 'name')
  */
 ```
 [View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/except.js)
-
-#### `extend(key, fn)`
-
-The extend method can be applied on the base Class to extend VueForm's default functionality with your own:
-
-```js
-import VueForm from 'vuejs-form'
-
-VueForm.extend('count', () => {
-    return this.keys().length
-})
-
-VueForm.extend('mapInto', into => {
-    // NOTICE: this.data is where the input object is actually stored
-
-    this.data = Object.entries(this.data).reduce((input, [key, value]) => ({
-            ...input,
-            ...into(key, value)
-        },
-    {})
-
-    return this
-})
-
-const form = VueForm.make
-const form = VueForm.make
-
-const ExampleForm = form({
-    email: 'example@gmail',
-    password: 'secret',
-})
-
-ExampleForm.mapInto((key, value) => ({ [key]: value.split('@') })).all()
-/**
- * { email: ['example', 'gmail'], password: 'secret' }
- */
-```
-
-[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/extend.js)
 
 #### `fill({ key: value, keyTwo: valueTwo, etc... })`
 
@@ -317,6 +281,37 @@ const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 ExampleForm.keys() // ['id', 'name', 'email']
 ```
 
+
+#### `macro(key, fn)`
+
+The macro method can be used to extend upon the form object:
+
+```js
+import form from 'vuejs-form';
+
+form().macro('count', () => {
+    return this.keys().length;
+});
+
+form().macro('mapInto', into => {
+    return this.toArray().reduce((accumulated, { key, value }) => ({
+            ...accumulated,
+            ...into(key, value)
+        }),
+    {});
+});
+
+const ExampleForm = form({
+    email: 'example@gmail',
+    password: 'secret',
+});
+
+ExampleForm.mapInto((key, value) => ({ [`example_form_${key}`]: value }));
+// { example_form_email: 'example@gmail.com', 'example_form_password': 'secret' };
+
+```
+
+[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/extend.js)
 
 #### `make({ ... })`
 

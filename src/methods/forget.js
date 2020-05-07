@@ -1,7 +1,7 @@
 'use strict';
 
-const setKeys = require('../helpers/setKeys');
+const fieldsOf = require('../helpers/fieldsOf.js');
 
 module.exports = function forget(...args) {
-    setKeys(this, args).has().forEach(property => delete this.data[property]);
+    fieldsOf(this, args).has().forEach(property => delete this.data[property]);
 };

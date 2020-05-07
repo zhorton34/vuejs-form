@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = function extend(method, callback) {
-  if (Object.keys(this).includes(method)) {
-    return console.error("Cant extend form with ".concat(method, ", it already exists"));
+module.exports = function extend(name, callback) {
+  if (Object.keys(this.constructor.prototype).includes(name)) {
+    return console.error("Cant extend form with method ".concat(name, ", it already exists"));
   }
 
   this.constructor.prototype[name] = callback;

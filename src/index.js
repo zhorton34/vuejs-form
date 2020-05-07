@@ -29,69 +29,43 @@ VueForm.prototype.only = require('./methods/only');
 VueForm.prototype.set = require('./methods/set');
 VueForm.prototype.toArray = require('./methods/toArray');
 VueForm.prototype.wrap = require('./methods/wrap');
-VueForm.prototype.macro = function (name, fn) {
-	this.constructor.prototype[name] = fn;
+VueForm.prototype.macro = require('./methods/macro');
+VueForm.prototype.proxy = require('./methods/proxy');
+VueForm.prototype.build = require('./methods/build');
+VueForm.prototype.use = require('./methods/use');
+
+const form = (dataOrValidatable, data) => {
+
+	if (typeof data === "undefined") {
+		return (new VueForm(dataOrValidatable)).proxy();
+	}
+	else if (typeof dataOrValidatable === 'function') {
+		return (new VueForm(data)).use(dataOrValidatable, {}).proxy();
+	}
+	else if (typeof dataOrValidatable !== 'function' && typeof data !== "undefined") {
+		console.error(`form(validatable, data): validatable must be an instance of vuejs-validators: See vuejs-form Docs`);
+		console.log(`vuejs-form has a powerful, optional, validation library. vuejs-validators`);
+		console.log(`vuejs-validators exports a validator function`);
+		console.log('vuejs-validators docs: https://github.com/zhorton34/vuejs-validators');
+		console.log('vuejs-forms docs: https://github.com/zhorton34/vuejs-form');
+		console.log(
+			'If you are trying make your vuejs-form data "validatable": ',
+			'1: Install vuejs-validators',
+			'2: Pass in vuejs-validators "validation" instance as the 1st parameter and the form data as the 2nd parameter (Ex: "form(validator, data)")'
+		);
+		console.log("-----------------");
+		console.log(
+			'To create a vuejs-form that is NOT "validatable" simply:',
+			'1: Omit the second parameter',
+			'2: Pass in data as the first parameter',
+			'2: Non Validatable Form Example: form({ name: "sarah", email: "sarah.smith@gmail.com" })',
+		);
+	}
+
+	return (new VueForm(data)).proxy();
 };
-
-const accessor = require('./helpers/accessor');
-const form = (data = {}) => new VueForm(data);
-const MakeForm = (data = {}) => accessor(new VueForm(data));
-
-form().macro('proxy', function () {
-	return accessor(this);
-});
-
-form().macro('use', function (validatable, options) {
-	this.setValidator = function (rules = {}, messages = {}, translator = {}) {
-		this.validator = validatable(this.data, rules, messages, translator);
-
-		return this;
-	};
-
-	this.hasValidator = function () {
-		return typeof this.validator !== 'undefined';
-	};
-
-	this.rules = function (rules = {}) {
-		if (this.hasValidator()) {
-			this.getValidator().setRules(rules);
-		} else {
-			this.validator = validatable(this.data, rules);
-		}
-
-		return this;
-	};
-
-	this.messages = function (messages = {}) {
-		if (this.hasValidator()) {
-			this.getValidator().setMessages(messages);
-		} else {
-			this.validator = validatable(this.all(), messages);
-		}
-
-		return this;
-	};
-
-	this.validate = function () {
-		this.getValidator().setData(this.data);
-		this.getValidator().validate();
-	};
-
-	this.getValidator = function () {
-		return this.validator;
-	};
-
-	this.getErrors = function () {
-		return this.getValidator().errors();
-	};
-
-	this.setValidator(options);
-
-	return this.proxy();
-});
 
 module.exports = form;
 module.exports.form = form;
 module.exports.default = form;
 module.exports.VueForm = VueForm;
-module.exports.MakeForm = MakeForm;
