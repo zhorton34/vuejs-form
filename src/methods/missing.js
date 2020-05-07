@@ -1,11 +1,11 @@
 'use strict';
 
 const exists = require('../helpers/exists');
-const setKeys = require('../helpers/setKeys');
 const dataGet = require('../helpers/dataGet');
+const fieldsOf = require('../helpers/fieldsOf');
 
 module.exports = function missing(...args) {
 	const missing = key => !exists(dataGet(this.data, key));
 
-	return setKeys(this, args).has().some(missing);
+	return fieldsOf(this, args).has().some(missing);
 };

@@ -2,10 +2,10 @@
 
 const isEmpty = require('../helpers/isEmpty');
 const dataGet = require('../helpers/dataGet');
-const setKeys = require('../helpers/setKeys.js');
+const fieldsOf = require('../helpers/fieldsOf.js');
 
 module.exports = function empty(...properties) {
   	const emptyValue = key => isEmpty(dataGet(this.data, key));
 
-	return setKeys(this, properties).has().some(emptyValue);
+	return fieldsOf(this, properties).has().some(emptyValue);
 };

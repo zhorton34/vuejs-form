@@ -2,9 +2,9 @@
 
 var exists = require('../helpers/exists');
 
-var setKeys = require('../helpers/setKeys');
-
 var dataGet = require('../helpers/dataGet');
+
+var fieldsOf = require('../helpers/fieldsOf');
 
 module.exports = function missing() {
   var _this = this;
@@ -17,5 +17,5 @@ module.exports = function missing() {
     args[_key] = arguments[_key];
   }
 
-  return setKeys(this, args).has().some(missing);
+  return fieldsOf(this, args).has().some(missing);
 };
