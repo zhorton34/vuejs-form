@@ -1,10 +1,10 @@
 'use strict';
 
-const setKeys = require('../helpers/setkeys');
 const dataGet = require('../helpers/dataGet');
+const fieldsOf = require('../helpers/fieldsOf');
 
 module.exports = function hasAny(...args) {
   const value = key => dataGet(this.data, key);
 
-  return setKeys(this, args).has().some(value);
+  return fieldsOf(this, args).has().some(value);
 };
