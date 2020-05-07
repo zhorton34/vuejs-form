@@ -1,6 +1,6 @@
 {
   "name": "vuejs-form",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Form wrapper simplifying developer ability to access, check, fill, and pass input data",
   "main": "dist/index.js",
   "scripts": {
