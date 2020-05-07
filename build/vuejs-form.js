@@ -147,18 +147,6 @@ eval("\n/**\n * Determine if a value is empty\n *\n * @param value\n * @returns 
 
 /***/ }),
 
-/***/ "./dist/helpers/setkeys.js":
-/*!*********************************!*\
-  !*** ./dist/helpers/setkeys.js ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nvar variadic = __webpack_require__(/*! ./variadic */ \"./dist/helpers/variadic.js\");\n\nmodule.exports = function (form, keys) {\n  var properties = variadic(keys);\n  return properties.length > 0 ? {\n    has: function has() {\n      return properties;\n    }\n  } : {\n    has: function has() {\n      return form.keys();\n    }\n  };\n};\n\n//# sourceURL=webpack://form/./dist/helpers/setkeys.js?");
-
-/***/ }),
-
 /***/ "./dist/helpers/variadic.js":
 /*!**********************************!*\
   !*** ./dist/helpers/variadic.js ***!
@@ -323,7 +311,7 @@ eval("\n\nvar dataGet = __webpack_require__(/*! ../helpers/dataGet */ \"./dist/h
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar setKeys = __webpack_require__(/*! ../helpers/setkeys */ \"./dist/helpers/setkeys.js\");\n\nvar dataGet = __webpack_require__(/*! ../helpers/dataGet */ \"./dist/helpers/dataGet.js\");\n\nmodule.exports = function hasAny() {\n  var _this = this;\n\n  var value = function value(key) {\n    return dataGet(_this.data, key);\n  };\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  return setKeys(this, args).has().some(value);\n};\n\n//# sourceURL=webpack://form/./dist/methods/hasAny.js?");
+eval("\n\nvar dataGet = __webpack_require__(/*! ../helpers/dataGet */ \"./dist/helpers/dataGet.js\");\n\nvar fieldsOf = __webpack_require__(/*! ../helpers/fieldsOf */ \"./dist/helpers/fieldsOf.js\");\n\nmodule.exports = function hasAny() {\n  var _this = this;\n\n  var value = function value(key) {\n    return dataGet(_this.data, key);\n  };\n\n  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {\n    args[_key] = arguments[_key];\n  }\n\n  return fieldsOf(this, args).has().some(value);\n};\n\n//# sourceURL=webpack://form/./dist/methods/hasAny.js?");
 
 /***/ }),
 
