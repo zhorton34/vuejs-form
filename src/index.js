@@ -34,28 +34,30 @@ VueForm.prototype.proxy = require('./methods/proxy');
 VueForm.prototype.build = require('./methods/build');
 VueForm.prototype.use = require('./methods/use');
 
-const form = (data = {}, validatable) => {
-	if (typeof validatable === "undefined") {
-		return (new VueForm(data)).proxy();
+const form = (dataOrValidatable, data) => {
+
+	if (typeof data === "undefined") {
+		return (new VueForm(dataOrValidatable)).proxy();
 	}
-	else if (typeof validatable === 'function') {
-		return (new VueForm(data)).use(validatable, {}).proxy();
+	else if (typeof dataOrValidatable === 'function') {
+		return (new VueForm(data)).use(dataOrValidatable, {}).proxy();
 	}
-	else if (typeof validatable !== 'function' && typeof validatable !== "undefined") {
-		console.error(`form(data, validatable): validatable must be an instance of vuejs-validators: See vuejs-form Docs`);
+	else if (typeof dataOrValidatable !== 'function' && typeof data !== "undefined") {
+		console.error(`form(validatable, data): validatable must be an instance of vuejs-validators: See vuejs-form Docs`);
 		console.log(`vuejs-form has a powerful, optional, validation library. vuejs-validators`);
 		console.log(`vuejs-validators exports a validator function`);
 		console.log('vuejs-validators docs: https://github.com/zhorton34/vuejs-validators');
 		console.log('vuejs-forms docs: https://github.com/zhorton34/vuejs-form');
 		console.log(
-			'If you are trying make your vuejs-form "validatable": ',
+			'If you are trying make your vuejs-form data "validatable": ',
 			'1: Install vuejs-validators',
-			'2: Pass in vuejs-validators "validation" instance as the 2nd parameter to vuejs-form (Ex: "form(data, validator)")'
+			'2: Pass in vuejs-validators "validation" instance as the 1st parameter and the form data as the 2nd parameter (Ex: "form(validator, data)")'
 		);
 		console.log("-----------------");
 		console.log(
 			'To create a vuejs-form that is NOT "validatable" simply:',
 			'1: Omit the second parameter',
+			'2: Pass in data as the first parameter',
 			'2: Non Validatable Form Example: form({ name: "sarah", email: "sarah.smith@gmail.com" })',
 		);
 	}

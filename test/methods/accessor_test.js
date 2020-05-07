@@ -31,7 +31,7 @@ module.exports = (it, expect, form) => {
 
 		const validatable = (data = {}, rules = {}, messages = {}, translator = {}) => (new Validator(data, rules, messages, translator));
 
-		let example = form({ name: 'sam' }, validatable);
+		let example = form(validatable, { name: 'sam' });
 
 		expect(example.name).to.eql('sam');
 	});

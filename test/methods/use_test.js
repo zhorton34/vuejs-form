@@ -54,19 +54,19 @@ module.exports = (it, expect, form) => {
 	const validatable = (data = {}, rules = {}, messages = {}, translator = {}) => (new Validator(data, rules, messages, translator));
 
 	it('should "use" validatable instance and be able to "getValidator"', () => {
-		let example = form({ name: 'sam' }, validatable);
+		let example = form(validatable, { name: 'sam' });
 
 		expect(example.getValidator().data).to.eql({ name: 'sam' });
 	});
 
 	it('should "use" validatable instance and confirm it "hasValidator"', () => {
-		let example = form({ name: 'sam' }, validatable);
+		let example = form(validatable, { name: 'sam' });
 
 		expect(example.hasValidator()).to.eql(true);
 	});
 
 	it('should "use" validatable and set "rules"', () => {
-		let example = form({ name: 'sam' }, validatable).rules({
+		let example = form(validatable, { name: 'sam' }).rules({
 			'name': 'required|min:4'
 		});
 
@@ -74,7 +74,7 @@ module.exports = (it, expect, form) => {
 	});
 
 	it('should "use" validatable and set "messages"', () => {
-		let example = form({ name: 'sam' }, validatable).rules({
+		let example = form(validatable, { name: 'sam' }).rules({
 			'name': 'required|min:4'
 		}).messages({
 			'name.required': 'name is required',
@@ -88,7 +88,7 @@ module.exports = (it, expect, form) => {
 	});
 
 	it('should "use" validatable, with ability to "validate" and "getErrors"', () => {
-		let example = form({ name: 'sam' }, validatable).rules({
+		let example = form(validatable, { name: 'sam' }).rules({
 			'name': 'required|min:4'
 		}).messages({
 			'name.required': 'name is required',
@@ -101,7 +101,7 @@ module.exports = (it, expect, form) => {
 	});
 
 	it('should "use" validatable, with ability to "setValidator" a new', () => {
-		let example = form({ name: 'sam' }, validatable).rules({
+		let example = form(validatable, { name: 'sam' }).rules({
 			'name': 'required|min:4'
 		}).messages({
 			'name.required': 'name is required',

@@ -45,31 +45,33 @@ yarn add vuejs-form --save
 
 <script>
     import form from 'vuejs-form'
-    import validator from 'vuejs-validators'
+    import validatable from 'vuejs-validators'
 
     export default {
        data: () => ({
-            form: form({
+            form: form(validatable, {
                 name: '',
                 email: '',
                 password: '',
                 confirm_password: ''
-            }).use(validator, {
+            })
+            .rules({
                 name: 'required|min:5',
                 email: 'email|min:5|required',
                 password: 'required|same:confirm_password',
                 confirm_password: 'min:6',
-            }).messages({
+            })
+            .messages({
                 'name.required': ':attribute is a required field and this is a custom message',
             }),
        }),
 
        watch: {
-        'form.data': {
-            deep: true,
-            handler: 'input',
-            immediate: false,
-        }
+            'form.data': {
+                deep: true,
+                handler: 'input',
+                immediate: false,
+            }
        },
 
         computed: {
@@ -78,6 +80,7 @@ yarn add vuejs-form --save
             }
         },
         methods: {
+            /** Called every time form data is changed */
             input(current, was) {
                 this.form.validate();
             },
