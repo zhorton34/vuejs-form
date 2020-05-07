@@ -55,7 +55,7 @@ https://github.com/zhorton34/vuejs-validators
         
         computed: {
             errors() {
-                return this.form.getErrors()
+                return this.form.getErrors().list()
             }
         },
         methods: {
