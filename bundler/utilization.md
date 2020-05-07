@@ -145,13 +145,13 @@ LoginForm.boolean('terms') // false
 
 #### Extend Form Functionality
 ```js
-import VueForm from 'vuejs-form'
+import form from 'vuejs-form'
 
-VueForm.extend('count', () => {
+form().macro('count', () => {
     return this.keys().length
 })
 
-VueForm.extend('mapInto', into => {
+form().macro('mapInto', into => {
     // NOTICE: this.data is where the input object is actually stored
 
     this.data = Object.entries(this.data).reduce((input, [key, value]) => ({
@@ -163,14 +163,14 @@ VueForm.extend('mapInto', into => {
     return this
 })
 
-const form = VueForm.make
+
 
 const extendedForm = form({
     email: 'example@gmail',
     password: 'secret',
 })
 
-extendedForm.mapInto((key, value) => ({ [key]: value.split('@') })).all()
+form().macro((key, value) => ({ [key]: value.split('@') })).all()
 /**
  * { email: ['example', 'gmail'], password: 'secret' }
  */

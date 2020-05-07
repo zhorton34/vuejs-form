@@ -3,66 +3,6 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/zhorton34/vuejs-form/blob/master/package.json)
 
-# Use vuejs-validations Along Side vuejs-form
-(Created in parrallel, but keeps validation and form logic decoupled)
-https://github.com/zhorton34/vuejs-validators
-```js
-<template>
-    <div>
-        <input type='text' v-model='form.name' /> <br>
-        <input type='email' v-model='form.email' /> <br>
-        <input type='password' v-model='form.password' /> <br>
-        <input type='password' v-model='form.confirm_password' /> <br>
-        <hr>
-        <button :disabled='form.empty()' @click='submit'>
-            Complete
-        </button>
-    </div>
-</template>
-
-<script>
-    import form from 'vuejs-form' 
-    import validator from 'vuejs-validators'
-
-    export default {
-       data: () => ({
-            form: form({ 
-                name: '', 
-                email: '', 
-                password: '', 
-                confirm_password: ''
-            }),
-
-            validator: validator(form, {
-                name: 'required|min:5',
-                email: 'email|min:5|required',
-                password: 'required|same:confirm_password',
-                confirm_password: 'min:6',
-            }),
-       }),
-
-        created() {            
-            this.validator.data = this.form.all();
-        },
-        
-        methods: {
-            failed(validator) {
-                console.log('validator errors: ', validator.errors)
-            },
-            passed(validator) {
-                console.log('passed: ', validator);
-            },
-
-            submit() {
-                this.validator.passed(validator => this.passed(validator))
-                this.validator.failed(validator => this.failed(validator))
-
-                this.validator.validate();
-            }
-        }
-    }
-</script>
-```
 
 # That Vue Form (Simplified)
 
@@ -84,10 +24,76 @@ yarn add vuejs-form --save
 ```
 
 
-#### Quick Vue Overview (See Entire Form Api Below)
+#### Quick Vue Overview (Use With Vuejs-validators)
+```js
+<template>
+    <div>
+        <div v-for="(message, key) in errors" :key="`${key}.error`">
+            {{ message }}
+        </div>
 
-# <img src="https://raw.githubusercontent.com/zhorton34/vuejs-form/master/vuejs-form.png" alt="Vue JS Form">
+        <input type='text' v-model='form.name' /> <br>
+        <input type='email' v-model='form.email' /> <br>
+        <input type='password' v-model='form.password' /> <br>
+        <input type='password' v-model='form.confirm_password' /> <br>
+        <hr>
+        <button :disabled='form.empty()' @click='submit'>
+            Complete
+        </button>
+    </div>
+</template>
 
+<script>
+    import form from 'vuejs-form'
+    import validator from 'vuejs-validators'
+
+    export default {
+       data: () => ({
+            form: form({
+                name: '',
+                email: '',
+                password: '',
+                confirm_password: ''
+            }).use(validator, {
+                name: 'required|min:5',
+                email: 'email|min:5|required',
+                password: 'required|same:confirm_password',
+                confirm_password: 'min:6',
+            }).messages({
+                'name.required': ':attribute is a required field and this is a custom message',
+            }),
+       }),
+
+       watch: {
+        'form.data': {
+            deep: true,
+            handler: 'input',
+            immediate: false,
+        }
+       },
+
+        computed: {
+            errors() {
+                return this.form.getErrors().list()
+            }
+        },
+        methods: {
+            input(current, was) {
+                this.form.validate();
+            },
+            failed() {
+                console.log('form errors: ', this.form.getErrors.all())
+            },
+            passed() {
+                console.log('form passed: ', this.form.all());
+            },
+            submit() {
+                return this.form.getErrors().any() ? this.failed() : this.passed();
+            }
+        }
+    }
+</script>
+```
 
 
 ### API
@@ -554,13 +560,13 @@ LoginForm.boolean('terms') // false
 
 #### Extend Form Functionality
 ```js
-import VueForm from 'vuejs-form'
+import form from 'vuejs-form'
 
-VueForm.extend('count', () => {
+form().macro('count', () => {
     return this.keys().length
 })
 
-VueForm.extend('mapInto', into => {
+form().macro('mapInto', into => {
     // NOTICE: this.data is where the input object is actually stored
 
     this.data = Object.entries(this.data).reduce((input, [key, value]) => ({
@@ -572,14 +578,14 @@ VueForm.extend('mapInto', into => {
     return this
 })
 
-const form = VueForm.make
+
 
 const extendedForm = form({
     email: 'example@gmail',
     password: 'secret',
 })
 
-extendedForm.mapInto((key, value) => ({ [key]: value.split('@') })).all()
+form().macro((key, value) => ({ [key]: value.split('@') })).all()
 /**
  * { email: ['example', 'gmail'], password: 'secret' }
  */
