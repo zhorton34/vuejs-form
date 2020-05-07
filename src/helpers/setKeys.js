@@ -1,6 +1,7 @@
-const variadic = require('./variadic.js');
+'use strict';
+const variadic = require('./variadic');
 
-module.exports = function (form, keys) {
+module.exports = function setKeys(form, keys) {
 	const properties = variadic(keys);
 
 	return properties.length > 0

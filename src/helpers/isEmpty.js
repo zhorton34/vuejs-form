@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * Determine if a value is empty
@@ -11,4 +11,4 @@ module.exports = function (value) {
 	if (Array.isArray(value)) return value.length === 0;
 	for (const key in value) if (Object.keys(value, key)) return false;
 	return true;
-}
+};

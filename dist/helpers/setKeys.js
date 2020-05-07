@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-var variadic = require('./variadic.js');
+var variadic = require('./variadic');
 
-module.exports = function (form, keys) {
+module.exports = function setKeys(form, keys) {
   var properties = variadic(keys);
   return properties.length > 0 ? {
     has: function has() {
