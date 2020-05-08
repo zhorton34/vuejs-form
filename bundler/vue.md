@@ -1,4 +1,14 @@
-#### Quick Vue Overview (Use With Vuejs-validators)
+### VueJS Validators & VueJS Form (Recommended for best development experience, but ultimately optional)
+- [(npm)](https://www.npmjs.com/package/vuejs-validators)
+- [(github)](https://github.com/zhorton34/vuejs-validators)
+- _Fast_ Setup
+- _Zero_ Dependencies
+- _Tested_ Thoroughly
+- _Simplified_ Syntax
+- _Extremely_ Lightweight
+- _Simplified_ Extendability
+_Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be used independently, but ultimately were built in parallel with each other._
+
 ```js
 <template>
     <div>
@@ -18,56 +28,59 @@
 </template>
 
 <script>
-    import form from 'vuejs-form'
-    import validatable from 'vuejs-validators'
+import form from 'vuejs-form'
+import validatable from 'vuejs-validators'
 
-    export default {
-       data: () => ({
-            form: form(validatable, {
-                name: '',
-                email: '',
-                password: '',
-                confirm_password: ''
-            })
-            .rules({
-                name: 'required|min:5',
-                email: 'email|min:5|required',
-                password: 'required|same:confirm_password',
-                confirm_password: 'min:6',
-            })
-            .messages({
-                'name.required': ':attribute is a required field and this is a custom message',
-            }),
-       }),
+export default {
+    data: () => ({
+        form: form(validatable, {
+            email: '', password: '', confirm_password: ''
+        })
+        .rules({
+            email: 'email|min:5|required',
+            password: 'same:confirm_password',
+            confirm_password: 'min:6|required',
+        })
+        .messages({
+            'password.same': 'Whoops, :attribute does not match the :same field',
+        }),
+   }),
 
-       watch: {
-            'form.data': {
-                deep: true,
-                handler: 'input',
-                immediate: false,
-            }
-       },
-
-        computed: {
-            errors() {
-                return this.form.getErrors().list()
-            }
+   computed: {
+       errors() {
+            return this.form.getErrors().list();
         },
-        methods: {
-            /** Called every time form data is changed */
-            input(current, was) {
+   },
+
+   watch: {
+       /*--------------------------------------------------------------
+        * When Should Your Form "Validate", Providing Error Messages?
+        *--------------------------------------------------------------
+        * Form validates every time form data is updated. To
+        * display errors on form submit, remove watcher &
+        * move "this.form.validate()" over to submit()
+        *--------------------------------------------------------------
+        */
+        ['form.data']: {
+            deep: true,
+            handler(data, old) {
                 this.form.validate();
             },
-            failed() {
-                console.log('form errors: ', this.form.getErrors.all())
-            },
-            passed() {
-                console.log('form passed: ', this.form.all());
-            },
-            submit() {
-                return this.form.getErrors().any() ? this.failed() : this.passed();
-            }
         }
+   },
+
+
+    methods: {
+        submit() {
+            return this.form.getErrors().any() ? this.failed() : this.passed();
+        },
+        failed() {
+            console.log('failed: ', this.form.getErrors().all());
+        },
+        passed() {
+            console.log('passed: ', this.form.all());
+        },
     }
+}
 </script>
 ```

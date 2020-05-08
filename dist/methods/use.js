@@ -36,11 +36,12 @@ module.exports = function use(validatable) {
 
   this.messages = function () {
     var messages = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var rules = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (this.hasValidator()) {
       this.getValidator().setMessages(messages);
     } else {
-      this.validator = validatable(this.all(), messages);
+      this.validator = validatable(this.data, rules, messages);
     }
 
     return this;

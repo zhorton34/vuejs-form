@@ -28,11 +28,11 @@ module.exports = function use(validatable, options = {}) {
 		return this;
 	};
 
-	this.messages = function (messages = {}) {
+	this.messages = function (messages = {}, rules = {}) {
 		if (this.hasValidator()) {
 			this.getValidator().setMessages(messages);
 		} else {
-			this.validator = validatable(this.all(), messages);
+			this.validator = validatable(this.data, rules, messages);
 		}
 
 		return this;
