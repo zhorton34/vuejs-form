@@ -65,7 +65,13 @@ const form = (dataOrValidatable, data) => {
 	return (new VueForm(data)).proxy();
 };
 
+const validatable = require('vuejs-validators');
+const ValidatableForm = function (data = {}) {
+	return form(validatable, data);
+};
+
 module.exports = form;
 module.exports.form = form;
 module.exports.default = form;
 module.exports.VueForm = VueForm;
+module.exports.ValidatableForm = ValidatableForm;

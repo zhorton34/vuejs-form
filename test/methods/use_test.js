@@ -53,10 +53,10 @@ module.exports = (it, expect, form) => {
 
 	const validatable = (data = {}, rules = {}, messages = {}, translator = {}) => (new Validator(data, rules, messages, translator));
 
-	it('should "use" validatable instance and be able to "getValidator"', () => {
+	it('should "use" validatable instance and be able to get "validator"', () => {
 		let example = form(validatable, { name: 'sam' });
 
-		expect(example.getValidator().data).to.eql({ name: 'sam' });
+		expect(example.validator().data).to.eql({ name: 'sam' });
 	});
 
 	it('should "use" validatable instance and confirm it "hasValidator"', () => {
@@ -70,7 +70,7 @@ module.exports = (it, expect, form) => {
 			'name': 'required|min:4'
 		});
 
-		expect(example.getValidator().rules).to.eql({ 'name': 'required|min:4' });
+		expect(example.validator().rules).to.eql({ 'name': 'required|min:4' });
 	});
 
 	it('should "use" validatable and set "messages"', () => {
@@ -81,13 +81,13 @@ module.exports = (it, expect, form) => {
 			'name.min': 'name must not be less than :min characters'
 		});
 
-		expect(example.getValidator().messages).to.eql({
+		expect(example.validator().messages).to.eql({
 			'name.required': 'name is required',
 			'name.min': 'name must not be less than :min characters'
 		});
 	});
 
-	it('should "use" validatable, with ability to "validate" and "getErrors"', () => {
+	it('should "use" validatable, with ability to "validate" and get "errors"', () => {
 		let example = form(validatable, { name: 'sam' }).rules({
 			'name': 'required|min:4'
 		}).messages({
@@ -95,7 +95,7 @@ module.exports = (it, expect, form) => {
 			'name.min': 'name must not be less than :min characters'
 		});
 
-		expect(example.validate().getErrors().list()).to.eql([
+		expect(example.validate().errors().list()).to.eql([
 			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'
 		]);
 	});
@@ -116,15 +116,15 @@ module.exports = (it, expect, form) => {
 			'phrases': 'cool'
 		});
 
-		expect(example.getValidator().rules).to.eql({
+		expect(example.validator().rules).to.eql({
 			'name': 'required',
 		});
 
-		expect(example.getValidator().messages).to.eql({
+		expect(example.validator().messages).to.eql({
 			'name.required': 'Updated Messages'
 		});
 
-		expect(example.getValidator().translator).to.eql({
+		expect(example.validator().translator).to.eql({
 			'phrases': 'cool'
 		});
 	});

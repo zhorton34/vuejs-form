@@ -1,4 +1,4 @@
-### VueJS Validators & VueJS Form (Recommended for best development experience, but ultimately optional)
+### VueJS Form Can Comes With VueJS Validators Rules
 - [(npm)](https://www.npmjs.com/package/vuejs-validators)
 - [(github)](https://github.com/zhorton34/vuejs-validators)
 - _Fast_ Setup
@@ -12,7 +12,7 @@ _Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be
 ```js
 <template>
     <div>
-        <div v-for="(message, key) in errors" :key="`${key}.error`">
+        <div v-if="form.errors().any()" v-for="(message, key) in form.errors().list()" :key="`${key}.error`">
             {{ message }}
         </div>
 
@@ -28,13 +28,14 @@ _Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be
 </template>
 
 <script>
-import form from 'vuejs-form'
-import validatable from 'vuejs-validators'
+import { ValidatableForm } from 'vuejs-form'
 
 export default {
     data: () => ({
-        form: form(validatable, {
-            email: '', password: '', confirm_password: ''
+        form: ValidatableForm({
+            email: '',
+            password: '',
+            confirm_password: ''
         })
         .rules({
             email: 'email|min:5|required',
@@ -42,15 +43,13 @@ export default {
             confirm_password: 'min:6|required',
         })
         .messages({
+            'email.required': ':attribute is required',
+            'email.email': ':attribute must be a valid email',
+            'email.min': ':attribute may not have less than :min characters',
             'password.same': 'Whoops, :attribute does not match the :same field',
+
         }),
    }),
-
-   computed: {
-       errors() {
-            return this.form.getErrors().list();
-        },
-   },
 
    watch: {
        /*--------------------------------------------------------------
@@ -69,16 +68,17 @@ export default {
         }
    },
 
-
     methods: {
-        submit() {
-            return this.form.getErrors().any() ? this.failed() : this.passed();
-        },
         failed() {
-            console.log('failed: ', this.form.getErrors().all());
+            console.log('failed: ', this.form.errors().all());
         },
         passed() {
             console.log('passed: ', this.form.all());
+        },
+        submit() {
+            return this.form.errors().any()
+                ? this.failed()
+                : this.passed();
         },
     }
 }

@@ -9,20 +9,20 @@
  */
 module.exports = function use(validatable, options = {}) {
 	this.setValidator = function (rules = {}, messages = {}, translator = {}) {
-		this.validator = validatable(this.data, rules, messages, translator);
+		this.validatorInstance = validatable(this.data, rules, messages, translator);
 
 		return this;
 	};
 
 	this.hasValidator = function () {
-		return typeof this.validator !== 'undefined';
+		return typeof this.validatorInstance !== 'undefined';
 	};
 
 	this.rules = function (rules = {}) {
-		if (this.hasValidator()) {
-			this.getValidator().setRules(rules);
+		if (this.validator()) {
+			this.validator().setRules(rules);
 		} else {
-			this.validator = validatable(this.data, rules);
+			this.validatorInstance = validatable(this.data, rules);
 		}
 
 		return this;
@@ -30,27 +30,27 @@ module.exports = function use(validatable, options = {}) {
 
 	this.messages = function (messages = {}, rules = {}) {
 		if (this.hasValidator()) {
-			this.getValidator().setMessages(messages);
+			this.validator().setMessages(messages);
 		} else {
-			this.validator = validatable(this.data, rules, messages);
+			this.validatorInstance = validatable(this.data, rules, messages);
 		}
 
 		return this;
 	};
 
 	this.validate = function () {
-		this.getValidator().setData(this.data);
-		this.getValidator().validate();
+		this.validator().setData(this.data);
+		this.validator().validate();
 
 		return this;
 	};
 
-	this.getValidator = function () {
-		return this.validator;
+	this.validator = function () {
+		return this.validatorInstance;
 	};
 
-	this.getErrors = function () {
-		return this.getValidator().errors();
+	this.errors = function () {
+		return this.validator().errors();
 	};
 
 	this.setValidator(options);

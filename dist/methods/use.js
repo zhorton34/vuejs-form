@@ -14,21 +14,21 @@ module.exports = function use(validatable) {
     var rules = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var messages = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var translator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    this.validator = validatable(this.data, rules, messages, translator);
+    this.validatorInstance = validatable(this.data, rules, messages, translator);
     return this;
   };
 
   this.hasValidator = function () {
-    return typeof this.validator !== 'undefined';
+    return typeof this.validatorInstance !== 'undefined';
   };
 
   this.rules = function () {
     var rules = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    if (this.hasValidator()) {
-      this.getValidator().setRules(rules);
+    if (this.validator()) {
+      this.validator().setRules(rules);
     } else {
-      this.validator = validatable(this.data, rules);
+      this.validatorInstance = validatable(this.data, rules);
     }
 
     return this;
@@ -39,26 +39,26 @@ module.exports = function use(validatable) {
     var rules = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     if (this.hasValidator()) {
-      this.getValidator().setMessages(messages);
+      this.validator().setMessages(messages);
     } else {
-      this.validator = validatable(this.data, rules, messages);
+      this.validatorInstance = validatable(this.data, rules, messages);
     }
 
     return this;
   };
 
   this.validate = function () {
-    this.getValidator().setData(this.data);
-    this.getValidator().validate();
+    this.validator().setData(this.data);
+    this.validator().validate();
     return this;
   };
 
-  this.getValidator = function () {
-    return this.validator;
+  this.validator = function () {
+    return this.validatorInstance;
   };
 
-  this.getErrors = function () {
-    return this.getValidator().errors();
+  this.errors = function () {
+    return this.validator().errors();
   };
 
   this.setValidator(options);
