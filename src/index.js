@@ -70,8 +70,8 @@ const ValidatableForm = function (data = {}) {
 	return form(validatable, data);
 };
 
-module.exports = form;
 module.exports.form = form;
-module.exports.default = form;
 module.exports.VueForm = VueForm;
-module.exports.ValidatableForm = ValidatableForm;
+module.exports = ValidatableForm;
+module.exports.default = ValidatableForm;
+module.exports.validatable = validatable;
