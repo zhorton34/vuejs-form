@@ -5,7 +5,7 @@ const { it } = require('mocha');
 const { describe } = require('mocha');
 const path = require('path');
 const { expect } = require('chai');
-const form = require('../dist');
+const { form } = require('../dist');
 
 let test = process.argv[process.argv.length - 1];
 const runSingleTest = test.indexOf('--') !== -1;

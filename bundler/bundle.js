@@ -9,6 +9,7 @@ const installation = readFileSync('bundler/installation.md', 'utf-8');
 const utilization = readFileSync('bundler/utilization.md', 'utf-8');
 const api = readFileSync('bundler/api.md', 'utf-8');
 const vue = readFileSync('bundler/vue.md', 'utf-8');
+const change_log = readFileSync('bundler/change_log.md', 'utf-8');
 
 // const strictnessAndComparisons = readFileSync('bundler/strictness_and_comparisons.md', 'utf-8');
 // const notImplemented = readFileSync('bundler/not_implemented.md', 'utf-8');
@@ -54,5 +55,6 @@ writeFileSync(
 		utilization,
 		contribute,
 		license,
+		change_log
 	].join('\n\n'),
 );

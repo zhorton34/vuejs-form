@@ -30,7 +30,7 @@ yarn add vuejs-form --save
 - [CodePen (VueJS Form & VueJS Validators Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
 
 
-### VueJS Validators & VueJS Form (Recommended for best development experience, but ultimately optional)
+### VueJS Form Can Comes With VueJS Validators Rules
 - [(npm)](https://www.npmjs.com/package/vuejs-validators)
 - [(github)](https://github.com/zhorton34/vuejs-validators)
 - _Fast_ Setup
@@ -44,7 +44,7 @@ _Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be
 ```js
 <template>
     <div>
-        <div v-for="(message, key) in errors" :key="`${key}.error`">
+        <div v-if="form.errors().any()" v-for="(message, key) in form.errors().list()" :key="`${key}.error`">
             {{ message }}
         </div>
 
@@ -61,12 +61,13 @@ _Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be
 
 <script>
 import form from 'vuejs-form'
-import validatable from 'vuejs-validators'
 
 export default {
     data: () => ({
-        form: form(validatable, {
-            email: '', password: '', confirm_password: ''
+        form: form({
+            email: '',
+            password: '',
+            confirm_password: ''
         })
         .rules({
             email: 'email|min:5|required',
@@ -74,15 +75,12 @@ export default {
             confirm_password: 'min:6|required',
         })
         .messages({
+            'email.required': ':attribute is required',
+            'email.email': ':attribute must be a valid email',
+            'email.min': ':attribute may not have less than :min characters',
             'password.same': 'Whoops, :attribute does not match the :same field',
         }),
    }),
-
-   computed: {
-       errors() {
-            return this.form.getErrors().list();
-        },
-   },
 
    watch: {
        /*--------------------------------------------------------------
@@ -95,22 +93,21 @@ export default {
         */
         ['form.data']: {
             deep: true,
-            handler(data, old) {
-                this.form.validate();
-            },
+            immediate: false,
+            handler: (now, old) => { this.form.validate(); },
         }
    },
 
-
     methods: {
-        submit() {
-            return this.form.getErrors().any() ? this.failed() : this.passed();
-        },
         failed() {
-            console.log('failed: ', this.form.getErrors().all());
+            console.log('errors: ', this.form.errors().all());
         },
         passed() {
-            console.log('passed: ', this.form.all());
+            console.log('data: ', this.form.all());
+            console.log('wrapped data: ', this.form.wrap('data'));
+        },
+        submit() {
+            return this.form.errors().any() ? this.failed() : this.passed();
         },
     }
 }
@@ -619,3 +616,12 @@ functionality or improve the docs please feel free to submit a PR.
 ### License
 
 MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/channel/UCq0m4ebGqurYQLwD-1aYsvg)
+
+## Change Log
+
+### 1.1.1
+- "form.getErrors()" replaced with "form.errors()"
+- "form.getValidator()" replaced with "form.validator()"
+- "vuejs-validators" setup as dev dependency
+- "ValidatableForm" Export ~ (Ex: const { ValidatableForm } = require('vuejs-form'))
+- Default import is ValidatableForm (Ex: import form from 'vuejs-form' has validator || import { form } from 'vuejs-form' does not have validator)
