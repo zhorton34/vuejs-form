@@ -34,8 +34,7 @@ VueForm.prototype.proxy = require('./methods/proxy');
 VueForm.prototype.build = require('./methods/build');
 VueForm.prototype.use = require('./methods/use');
 
-const form = (dataOrValidatable, data) => {
-
+const form = function (dataOrValidatable, data) {
 	if (typeof data === "undefined") {
 		return (new VueForm(dataOrValidatable)).proxy();
 	}
@@ -72,6 +71,6 @@ const ValidatableForm = function (data = {}) {
 
 module.exports.form = form;
 module.exports.VueForm = VueForm;
-module.exports = ValidatableForm;
 module.exports.default = ValidatableForm;
 module.exports.validatable = validatable;
+module.exports.ValidatableForm = ValidatableForm;

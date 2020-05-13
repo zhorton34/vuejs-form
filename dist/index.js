@@ -62,8 +62,8 @@ var ValidatableForm = function ValidatableForm() {
   return form(validatable, data);
 };
 
-module.exports = form;
 module.exports.form = form;
-module.exports["default"] = form;
 module.exports.VueForm = VueForm;
+module.exports["default"] = ValidatableForm;
+module.exports.validatable = validatable;
 module.exports.ValidatableForm = ValidatableForm;

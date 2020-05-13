@@ -60,11 +60,11 @@ _Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be
 </template>
 
 <script>
-import { ValidatableForm } from 'vuejs-form'
+import form from 'vuejs-form'
 
 export default {
     data: () => ({
-        form: ValidatableForm({
+        form: form({
             email: '',
             password: '',
             confirm_password: ''
@@ -79,7 +79,6 @@ export default {
             'email.email': ':attribute must be a valid email',
             'email.min': ':attribute may not have less than :min characters',
             'password.same': 'Whoops, :attribute does not match the :same field',
-
         }),
    }),
 
@@ -94,23 +93,21 @@ export default {
         */
         ['form.data']: {
             deep: true,
-            handler(data, old) {
-                this.form.validate();
-            },
+            immediate: false,
+            handler: (now, old) => { this.form.validate(); },
         }
    },
 
     methods: {
         failed() {
-            console.log('failed: ', this.form.errors().all());
+            console.log('errors: ', this.form.errors().all());
         },
         passed() {
-            console.log('passed: ', this.form.all());
+            console.log('data: ', this.form.all());
+            console.log('wrapped data: ', this.form.wrap('data'));
         },
         submit() {
-            return this.form.errors().any()
-                ? this.failed()
-                : this.passed();
+            return this.form.errors().any() ? this.failed() : this.passed();
         },
     }
 }
@@ -627,3 +624,4 @@ MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/channel/UCq0
 - "form.getValidator()" replaced with "form.validator()"
 - "vuejs-validators" setup as dev dependency
 - "ValidatableForm" Export ~ (Ex: const { ValidatableForm } = require('vuejs-form'))
+- Default import is ValidatableForm (Ex: import form from 'vuejs-form' has validator || import { form } from 'vuejs-form' does not have validator)
