@@ -34,7 +34,7 @@ const doc = group => {
 		markdown.br(),
 		markdown.hr(),
 		markdown.br(),
-		sections.map(section => bulb(link(section))).join('\n'),
+		sections.map(section => markdown.ul.link()).join('\n\n'),
 		sections.map(file => [markdown.h3(title(name(file))), contents(file)].join('\n\n')),
 		markdown.br(),
 		markdown.hr(),
@@ -63,7 +63,7 @@ const bundle = file => readFileSync(`bundler/${file}.md`, 'utf-8');
 const ReadMe = (content = []) => writeFileSync('README.md', content.join('\n\n'));
 
 ReadMe([
-	...['badges', 'header', 'highlight', 'installation', 'vue', 'api'].map(bundle),
+	...['badges', 'header', 'installation', 'highlight', 'vue', 'api'].map(bundle),
 	...[tableOfContents, methodDocumentation],
 	...['utilization', 'contribute', 'code_of_conduct', 'security_vulnerabilities', 'license'].map(bundle),
 	doc('changes')
