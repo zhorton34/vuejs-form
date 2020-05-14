@@ -617,11 +617,35 @@ functionality or improve the docs please feel free to submit a PR.
 
 MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/channel/UCq0m4ebGqurYQLwD-1aYsvg)
 
-## Change Log
+# Change Log
 
-### 1.1.1
+
+---
+
+
+
+
+- [1.1.0](#1.1.0)
+- [1.1.1](#1.1.1)
+
+1.1.0
+
 - "form.getErrors()" replaced with "form.errors()"
 - "form.getValidator()" replaced with "form.validator()"
 - "vuejs-validators" setup as dev dependency
 - "ValidatableForm" Export ~ (Ex: const { ValidatableForm } = require('vuejs-form'))
 - Default import is ValidatableForm (Ex: import form from 'vuejs-form' has validator || import { form } from 'vuejs-form' does not have validator)
+
+
+
+---,1.1.1
+
+- CDN Setup ()
+
+
+---
+
+
+
+
+---
