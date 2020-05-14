@@ -11,22 +11,34 @@
 > Convenient Wrapper For Form Input Data (Dependency Free ~ Usable Outside Externally From Vue)
 
 
-### Installation
+## Installation
 
-#### NPM
+### NPM
 
 ```bash
 npm install --save-dev vuejs-form
 ```
 
-#### Yarn
+### Yarn
 
 ```bash
 yarn add vuejs-form --save
 ```
 
-#### Code Pen (Real Time Errors Example)
 
+### CDN
+
+> **Minimized CDN**
+```bash
+<script src='https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.min.js'></script>
+```
+
+> **Non Minimized CDN**
+```bash
+<script src='https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.js'></script>
+```
+
+### Playground (Interactive Example)
 - [CodePen (VueJS Form & VueJS Validators Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
 
 
