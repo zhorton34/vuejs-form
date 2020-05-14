@@ -4,7 +4,6 @@
   "description": "Form wrapper simplifying developer ability to access, check, fill, and pass input data",
   "main": "dist/index.js",
   "scripts": {
-    "travis": "",
     "all": "npm run build && npm test",
     "pretest": "npm run transpile",
     "test": "mocha test/tests.js",

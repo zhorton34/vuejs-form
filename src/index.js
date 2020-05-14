@@ -30,6 +30,7 @@ VueForm.prototype.set = require('./methods/set');
 VueForm.prototype.toArray = require('./methods/toArray');
 VueForm.prototype.wrap = require('./methods/wrap');
 VueForm.prototype.macro = require('./methods/macro');
+VueForm.prototype.override = require('./methods/override');
 VueForm.prototype.proxy = require('./methods/proxy');
 VueForm.prototype.build = require('./methods/build');
 VueForm.prototype.use = require('./methods/use');
@@ -65,12 +66,14 @@ const form = function (dataOrValidatable, data) {
 };
 
 const validatable = require('vuejs-validators');
-const ValidatableForm = function (data = {}) {
+
+const ValidatableForm = function ValidatableForm(data = {}) {
 	return form(validatable, data);
 };
 
-module.exports.form = form;
+module.exports = ValidatableForm;
 module.exports.VueForm = VueForm;
+module.exports.SimpleForm = form;
+module.exports.validator = validatable;
 module.exports.default = ValidatableForm;
-module.exports.validatable = validatable;
 module.exports.ValidatableForm = ValidatableForm;

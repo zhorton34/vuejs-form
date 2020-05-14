@@ -16,13 +16,19 @@ module.exports = function fill() {
   var _this = this;
 
   var input = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  Object.entries(input).forEach(function (_ref) {
-    var _ref2 = _slicedToArray(_ref, 2),
-        key = _ref2[0],
-        value = _ref2[1];
+  var value = arguments.length > 1 ? arguments[1] : undefined;
 
-    if (_this.empty(key)) {
-      _this.data[key] = value;
-    }
-  });
+  if (typeof value === "undefined") {
+    Object.entries(input).forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          key = _ref2[0],
+          value = _ref2[1];
+
+      if (_this.empty(key)) {
+        _this.data[key] = value;
+      }
+    });
+  } else if (this.empty(input)) {
+    this.data[input] = value;
+  }
 };

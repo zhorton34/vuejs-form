@@ -12,7 +12,6 @@ npm install --save-dev vuejs-form
 yarn add vuejs-form --save
 ```
 
-
 ### CDN
 
 > **Minimized CDN**
@@ -27,3 +26,4 @@ yarn add vuejs-form --save
 
 ### Playground (Interactive Example)
 - [CodePen (VueJS Form & VueJS Validators Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
+
