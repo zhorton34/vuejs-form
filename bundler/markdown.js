@@ -57,7 +57,6 @@ const markdown = {
 			<img src="http://img.youtube.com/vi/${id}/0.jpg" alt="${alt}" width="${width}" height="${height}" border="${border}" />
 		</a>
 	`,
-
 };
 
 module.exports = markdown;

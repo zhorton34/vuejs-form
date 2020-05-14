@@ -38,15 +38,16 @@ const doc = group => {
 	const link = file => `[${name(file)}](#${name(file).toLowerCase()})`;
 	const title = name => name.replace(/_/, ' ').replace(/-/, ' ').split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
 
-
 	return [
 		header,
+		markdown.br(),
 		markdown.hr(),
 		markdown.br(),
 		sections.map(section => bulb(link(section))).join('\n'),
 		sections.map(file => [title(name(file)), contents(file), '---'].join('\n\n')),
 		markdown.br(),
-		markdown.hr()
+		markdown.hr(),
+		markdown.br(),
 	].join('\n\n');
 };
 
