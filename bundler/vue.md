@@ -1,15 +1,6 @@
-### VueJS Form Can Comes With VueJS Validators Rules
-- [(npm)](https://www.npmjs.com/package/vuejs-validators)
-- [(github)](https://github.com/zhorton34/vuejs-validators)
-- _Fast_ Setup
-- _Zero_ Dependencies
-- _Tested_ Thoroughly
-- _Simplified_ Syntax
-- _Extremely_ Lightweight
-- _Simplified_ Extendability
-_Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be used independently, but ultimately were built in parallel with each other._
+## Quick Vue Example
 
-```js
+```html
 <template>
     <div>
         <div v-if="form.errors().any()" v-for="(message, key) in form.errors().list()" :key="`${key}.error`">
@@ -26,8 +17,8 @@ _Did You Know? Individually, each package has ZERO Non-Dev Dependencies & can be
         </button>
     </div>
 </template>
-
-<script>
+```
+```js
 import form from 'vuejs-form'
 
 export default {
@@ -79,5 +70,4 @@ export default {
         },
     }
 }
-</script>
 ```

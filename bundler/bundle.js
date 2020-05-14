@@ -3,15 +3,6 @@
 const { readFileSync, readdirSync, writeFileSync } = require('fs');
 
 const markdown = require('./markdown.js');
-// Get all markdown stubs
-const header = readFileSync('bundler/header.md', 'utf-8');
-const badges = readFileSync('bundler/badges.md', 'utf-8');
-const installation = readFileSync('bundler/installation.md', 'utf-8');
-const utilization = readFileSync('bundler/utilization.md', 'utf-8');
-const api = readFileSync('bundler/api.md', 'utf-8');
-const vue = readFileSync('bundler/vue.md', 'utf-8');
-const contribute = readFileSync('bundler/contribute.md', 'utf-8');
-const license = readFileSync('bundler/license.md', 'utf-8');
 
 // Get all API docs
 const methods = readdirSync('docs/api', 'utf-8');
@@ -44,7 +35,7 @@ const doc = group => {
 		markdown.hr(),
 		markdown.br(),
 		sections.map(section => bulb(link(section))).join('\n'),
-		sections.map(file => [title(name(file)), contents(file), '---'].join('\n\n')),
+		sections.map(file => [markdown.h3(title(name(file))), contents(file)].join('\n\n')),
 		markdown.br(),
 		markdown.hr(),
 		markdown.br(),
@@ -67,19 +58,13 @@ const methodDocumentation = methods.map((file) => {
 	return content;
 }).join('\n\n');
 
-writeFileSync(
-	'README.md',
-	[
-		badges,
-		header,
-		installation,
-		vue,
-		api,
-		tableOfContents,
-		methodDocumentation,
-		utilization,
-		contribute,
-		license,
-		doc('changes'),
-	].join('\n\n'),
-);
+const bundle = file => readFileSync(`bundler/${file}.md`, 'utf-8');
+
+const ReadMe = (content = []) => writeFileSync('README.md', content.join('\n\n'));
+
+ReadMe([
+	...['badges', 'header', 'highlight', 'installation', 'vue', 'api'].map(bundle),
+	...[tableOfContents, methodDocumentation],
+	...['utilization', 'contribute', 'code_of_conduct', 'security_vulnerabilities', 'license'].map(bundle),
+	doc('changes')
+]);
