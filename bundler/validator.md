@@ -1,46 +1,147 @@
 ## Validator Api
-- [Validator Instance](#validator-instance)
+- [form.rules({...})](#form-register-rules)
+- [form.messages({...})](#form-customize-error-messages)
+- [form.validator(...)](#form-validator-instance)
+- [form.validate(...)](#validate-form-data)
+- [form.hasValidator()](#form-has-validator)
+- [form.setValidator({...})](#form-set-rules)
 
-#### Validator Instance
+### Form Register Rules
+> [@SeeAvailableValidationRules](#rules-api)  
+```js 
+form(data).rules({
+    name: 'required|min:4',
+    link: 'required|url',
+    category: 'required|within:blue,reg,green'
+});
+```
+
+>
+> Optionally Use Arrays Syntax Instead Of Pipes
+>
+
+```js 
+form(data).rules({
+    name: ['required', 'min:4'],
+    link: ['required', 'url'],
+    category: ['required', 'within:blue,reg,green']
+});
+```
+
+### Form Customize Error Messages
+- All rules have global default error messages shown when rule fails validation.
+- Optionally, you are able to override the global defaults rule messages
+- Simply use the form(data).rules(set)`.messages({ '{field}.{rule}': 'custom message for failing rule on field' });`
+```js
+let data = { email: ['required', 'email'] }
+form({ email: 'chad'}).rules({
+    email: ['required', 'email']
+})
+.messages({
+    'email.required': 'Email field is called email, needa make it an email (Hence Email Field Name, dont worry ~ we added validation just in case you forgot to make the email field an email)'
+})
+```
+### Form Validator Instance
+- Get [Validator Instance](https://github.com/zhorton34/vuejs-validators.js)
 ```js
 form(data).rules(options).messages(customMessages);
 
-const instance = form.validator();
+// form.validator().addMessage(field, error)
+// form.validator().addRule(field, rules) 
+// etc...
 ```
 
-#### Validate Form (Required To Retrieve Errors)
+### Validate Form Data
+- Check current form data against associated form rules
+- IMPORTANT: form MUST call validate() method before retrieving current errors
+
+<u>_COMMON GOTCHA!!!!_</u>
+- This wont get the current form errors
+- The `form.validate()` method was Never called
 ```js 
-let example = form({ name: '' }).rules({ name: 'required' })
+let data = { name: '' };
+let rules = { name: 'required' };
+
+form(data).rules(rules).errors().list();
+
+// --------------------------------------------
+// Form SHOULD fail, but errors list is empty
+// --------------------------------------------
+// Output: []
+// --------------------------------------------
 ```
 
-> Attempting to retrieve errors before validating the form will not
+> _What's the reason?_ 
 >
-> work properly UNTIL the "validate" method is called
+> Retrieving errors before validating form data  
+> 
+> would retrieve our error messages Api instance, 
+> but it hasn't been filled with our forms error messages.
 >
-> Example Of Common Mistake.
+> form.validate() compares form data against form rules, populating our form errors with failing rule messages.
+>
 
+**Validate THEN resolve the errors (Using forms fluent api)**
 ```js 
-example.errors().list();
+let data = { name: '' };
+let rules = { name: 'required' };
+
+form(data).rules(rules).validate().errors().list();
+// Output: ['Name field is required']
+
+// Again, we'll need to validate before retrieving our 
+// errors to validate that the values passes our given rules
+form.name = 'hello world';
+
+form.errors().list();
+// Output: ['Name field is required']
+
+form.validate().errors().list();
+// Output: []; 
 ```
-> Output: []
 >
-> Although the name rule is failing, we're not getting the error message for that given field
+>
+> Fluently call validate() before calling errors() is simple and to the point. 
+>
+> At first, this may seem like a tedious extra step. Many may wonder why we don't simply auto-validate the data?
+
+Reason for `form.validate().errors()` Instead of simply `form.errors()` triggering the validation.
+  - Reactive frameworks may use `errors()` and the associated Error Messages Api ([@See Form Error Messages Api](#form-error-messages-api))
+  - Without providing the option for the end developer to determine when the form validates
+  - Async requests, only validate once we've resolved some given data
+  - Immediate display of errors (Not always wanted)
+  - Option Open To Immediately show error messages ([@See Vue Watcher Example](#vue-example-two))
+  - Some other developers may only want to validate data on form submission
+  - Many validation rules can be abstracted using the form Api to simply disable the ability to submit a button
+  - EX: `<button :disabled='form.empty()' @click='submit'> Done </button>`
+  - Then within `submit() method` simply run `if (this.form.validate().errors().any()) return;`
+  - That allows the option to set up vuejs-form more like a traditional Form, and avoid many complexities that come along with maintaining the status of our reactive state
+  - etc...
+  
+### Form Has Validator
+Determine if form has a validator instance attached to it
+```js 
+form.hasValidator(); // true or false
+```
+
+### Form Set Validator
+- Set Validator Instance
+- Optionally import the validator instance itself, and extend 
+  its functionality validator().macro(add_method, method).
+- Then use form macros to track the current step form.macro(add_method, method).
+- vuejs-validators.js Also has validator life cycle hooks documented that are available here, but only documented within vuejs-form.js. Very helpful for multi-step forms
 
 ```js
-example.validate().errors().list(); 
-```
->
-> Output: ['Name field is required']
->
-> Fluently call validate() before calling errors() 
->
-> The validate() method calculates the current rules against the current data, populating our forms error messages
->
+const { form, validator } = require('vuejs-form');
 
 
+form().macro('setSwitchableValidators', (first, second) => {
+    this.toggleValidators = 
+    this.toggleBetween = first
+});
+
+```  
 ## Rules Api
-
-
 - [accepted](#accepted-rule)
 - [alpha](#alpha-rule)
 - [alpha_dash](#alpha_dash-rule)

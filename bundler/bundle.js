@@ -63,8 +63,8 @@ const bundle = file => readFileSync(`bundler/${file}.md`, 'utf-8');
 const ReadMe = (content = []) => writeFileSync('README.md', content.join('\n\n'));
 
 ReadMe([
-	...['badges', 'header', 'installation', 'highlight', 'vue', 'api'].map(bundle),
+	...['badges', 'header', 'installation', 'highlight', 'vue', 'api', 'validator'].map(bundle),
 	...[tableOfContents, methodDocumentation],
-	...['utilization', 'contribute', 'code_of_conduct', 'security_vulnerabilities', 'license'].map(bundle),
+	...['extend', 'utilization', 'contribute', 'code_of_conduct', 'security_vulnerabilities', 'license'].map(bundle),
 	doc('changes')
 ]);

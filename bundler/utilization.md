@@ -157,8 +157,8 @@ form().macro('mapInto', into => {
     this.data = Object.entries(this.data).reduce((input, [key, value]) => ({
             ...input,
             ...into(key, value)
-        },
-    {})
+        }),
+    {});
 
     return this
 })
