@@ -43,7 +43,6 @@ yarn add vuejs-form --save
 - [Vue Example One (Live Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
 - [Vue Example Two (Live Example)](https://codepen.io/zhorton34/pen/xxwaYez)
 
-
 ## Vue Example One
 
 > Show First Error For Each Field And
