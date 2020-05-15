@@ -146,3 +146,81 @@ export default {
     }
 }
 ```
+
+## Form API
+
+All Available Methods
+
+- [all](#all)
+- [boolean](#boolean)
+- [empty](#empty)
+- [except](#except)
+- [fill](#fill)
+- [filled](#filled)
+- [forget](#forget)
+- [has](#has)
+- [hasAny](#hasany)
+- [input](#input)
+- [keys](#keys)
+- [macro](#macro)
+- [make](#make)
+- [missing](#missing)
+- [only](#only)
+- [set](#set)
+- [toArray](#toarray)
+- [wrap](#wrap)
+
+## Validator Api
+- [Validator Instance](#validator-instance)
+
+
+## Rules Api
+- [accepted](#accepted-rule)
+- [alpha](#alpha-rule)
+- [alpha_dash](#alpha_dash-rule)
+- [alpha_num](#alpha_num-rule)
+- [array](#array-rule)
+- [between](#between-rule)
+- [boolean](#boolean-rule)
+- [confirmed](#confirmed-rule)
+- [different](#different-rule)
+- [digits](#digits-rule)
+- [digits_between](#digits_between-rule)
+- [distinct](#distinct-rule)
+- [email](#email-rule)
+- [ends_with](#ends_with-rule)
+- [integer](#integer-rule)
+- [ip](#ip-rule)
+- [ipv4](#ipv4-rule)
+- [ipv6](#ipv6-rule)
+- [json](#json-rule)
+- [max](#max-rule)
+- [min](#min-rule)
+- [not_regex](#not_regex-rule)
+- [not_within](#not_within-rule)
+- [number](#number-rule)
+- [numeric](#numeric-rule)
+- [phone](#phone-rule)
+- [regex](#regex-rule)
+- [required](#required-rule)
+- [same](#same-rule)
+- [starts_with](#starts_with-rule)
+- [string](#string-rule)
+- [url](#url-rule)
+- [within](#within-rule)
+
+## Error Messages Api
+> form.errors() Methods
+- [any()](#any-errors)
+- [all()](#all-errors)
+- [list()](#list-errors)
+- [set(errors)](#set-errors)
+- [forget()](#forget-errors)
+- [has(field)](#has-error)
+- [get(field)](#get-error)
+- [list(field)](#list-error)
+- [add(field, message)](#add-error)
+- [set(field, messages)](#set-field-errors)
+- [forget(field)](#forget-field)
+- [getValidator()](#get-errors-validator)
+
