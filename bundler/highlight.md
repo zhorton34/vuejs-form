@@ -1,6 +1,6 @@
-## Playground Example
-- [CodePen (Live Interactive Vue JS Form Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
-
+## Playground Examples
+- [Vue Example One (Live Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
+- [Vue Example Two (Live Example)](https://codepen.io/zhorton34/pen/xxwaYez)
 
 ## Vue Example One
 
@@ -171,8 +171,12 @@ All Available Methods
 - [wrap](#wrap)
 
 ## Validator Api
-- [Validator Instance](#validator-instance)
-
+- [form.rules({...})](#form-register-rules)
+- [form.messages({...})](#form-customize-error-messages)
+- [form.validator(...)](#form-validator-instance)
+- [form.validate(...)](#validate-form-data)
+- [form.hasValidator()](#form-has-validator)
+- [form.setValidator({...})](#form-set-rules)
 
 ## Rules Api
 - [accepted](#accepted-rule)

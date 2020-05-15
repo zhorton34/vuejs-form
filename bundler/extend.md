@@ -1,14 +1,14 @@
-# Extending
-extend several features provided by this package
+## Extend Api
+Extend and append functionality to just about every single major service this package provides
 
-- Extend Form Using Macros
-- Extend Validator Using Macros
-- Add Custom Error Messages
-- Add Custom Validation Rule
-- Add Multiple Custom Validation Rules
-- Multi Step Form Template Draft Example
+- [Extend Form Using Macros](#extend-form-using-macros)
+- [Extend Validator Using Macros](#extend-validator-using-macros)
+- [Add Custom Error Messages](#extending-custom-error-messages)
+- [Create Custom Validation Rule](#extending-custom-rules---single-rule)
+- [Create Custom Validation Rules](#extending-custom-rules---multiple-rules)
+- [Extend Into Multi Step Form Example](#extend-form-into-multi-step-form-not-tested-but-good-base-to-provide-some-ideas)
 
-### Extend Form Using Macros
+#### Extend Form Using Macros
 ```javascript
 const form = require('vuejs-form');
 
@@ -22,7 +22,7 @@ example.shortcut();
 // Output: ['Name is a required field'];
 ```
 
-### Extend Validator Using Macros
+#### Extend Validator Using Macros
 ```javascript
 const { form, validator } = require('vuejs-form');
 
@@ -48,15 +48,15 @@ let dictionary = { ru: { email: "Эл.почта" } };
 example.validator().translate({ locale, dictionary });
 ```
 
-## Extending: Custom Error Messages
-> Customize rule error messages
+#### Extending: Custom Error Messages
+Customize error messages for specific rules on any given field
 
 - Globally, each rule provides a default error message
 - Easily override rule's default error message
 - Simply pass 'messages' to our validator
 - Only override messages you want to
 
-```js
+```javascript
 let data = { name: '', email: '' };
 
 let rules = {
@@ -74,14 +74,14 @@ let customMessages = {
 form(data).rules(rules).messages(customMessages).validate().errors().all();
 ```
 
-## Extending: Custom Rules
+#### Extending: Custom Rules
 > Add Your Own Validation Rules
 
 - Easily add, or override, validation rules
 - Add a group of rules at a time
 - Add a single rule add a time
 
-### Extending: Custom Rules - Single Rule
+#### Extending: Custom Rules - Single Rule
 > form().validator().extend(rule_name, [message, rule])`
 ```js
 let example = form({ name: 'timmy' }).rules({ name: 'uppercase' });
@@ -98,8 +98,8 @@ example.validate().errors().has('name');
 example.errors().get('name');
 ```
 
-### Extending: Custom Rules - multiple rules
-> `validator.extend({ first: [message, rule], second: [message, rule], etc... })`
+#### Extending: Custom Rules - multiple rules
+> `form.validator().extend({ first: [message, rule], second: [message, rule], etc... })`
 ```js
 let example = form({ name: '' }).rules({ name: ['required_with:last_name', 'required' ] });
 
