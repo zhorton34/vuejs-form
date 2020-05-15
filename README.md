@@ -39,8 +39,9 @@ yarn add vuejs-form --save
 
 
 
-## Playground Example
-- [CodePen (Live Interactive Vue JS Form Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
+## Playground Examples
+- [Vue Example One (Live Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
+- [Vue Example Two (Live Example)](https://codepen.io/zhorton34/pen/xxwaYez)
 
 
 ## Vue Example One
