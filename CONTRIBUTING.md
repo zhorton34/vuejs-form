@@ -1,18 +1,9 @@
-# Contribution Guidelines
+## Contribute
 
-By participating in this project you agree to abide by its terms.
+PRs are welcomed to this project.
+If you want to improve the vuejs-form library, add
+functionality or improve the docs please feel free to submit a PR.
 
----
-
-Ensure your pull request adheres to the following guidelines:
-
-- For bug fixes or improvements please describe what your PR solves
-- PRs without tests will not be considered
-- Check your spelling and grammar
-- Adhere to the AirBnB JavaScript style guide
-- Make sure your text editor is set to remove trailing whitespace.
-
-Thank you for your contributions!
 
 Clean Code Studio 
-Clean Code Studio~ Simplify
+Clean Code Studio ~ Simplify

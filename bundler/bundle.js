@@ -1,48 +1,10 @@
+
 'use strict';
 
 const { readFileSync, readdirSync, writeFileSync } = require('fs');
 
-const markdown = require('./markdown.js');
-
-// Get all API docs
 const methods = readdirSync('docs/api', 'utf-8');
-
-
-// Build change log "readme"
-
-// Build table of contents
-const tableOfContents = methods.map((file) => {
-	const methodName = file.replace('.md', '');
-
-	return `- [${methodName}](#${methodName.toLowerCase()})`;
-}).join('\n');
-
-const doc = group => {
-	const type = `utf-8`;
-	const directory = `docs/${group}`;
-	const sections = readdirSync(directory, type);
-	const header = readFileSync(`bundler/${group}.md`, type);
-	const contents = file => readFileSync(`${directory}/${file}`, type);
-
-	const bulb = file => `- ${file}`;
-	const name = file => file.replace('.md', '');
-	const link = file => `[${name(file)}](#${name(file).toLowerCase()})`;
-	const title = name => name.replace(/_/, ' ').replace(/-/, ' ').split(' ').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
-
-	return [
-		header,
-		markdown.br(),
-		markdown.hr(),
-		markdown.br(),
-		sections.map(section => markdown.ul.link()).join('\n\n'),
-		sections.map(file => [markdown.h3(title(name(file))), contents(file)].join('\n\n')),
-		markdown.br(),
-		markdown.hr(),
-		markdown.br(),
-	].join('\n\n');
-};
-
-// Build methods "readme"
+const tableOfContents = methods.map((file) => `- [${file.replace('.md', '')}](#${file.replace('.md', '').toLowerCase()}`).join('\n');
 const methodDocumentation = methods.map((file) => {
 	let content = readFileSync(`docs/api/${file}`, 'utf-8');
 
@@ -59,12 +21,17 @@ const methodDocumentation = methods.map((file) => {
 }).join('\n\n');
 
 const bundle = file => readFileSync(`bundler/${file}.md`, 'utf-8');
-
 const ReadMe = (content = []) => writeFileSync('README.md', content.join('\n\n'));
+const ChangeLog = (content = []) => writeFileSync('CHANGELOG.md', content.join('\n\n'));
+const CodeOfConduct = (content = []) => writeFileSync('code_of_conducts.md', content.join('\n\n'));
 
+ChangeLog([bundle('change_log')]);
+CodeOfConduct([bundle('code_of_conduct')]);
 ReadMe([
 	...['badges', 'header', 'installation', 'highlight', 'vue', 'api', 'validator'].map(bundle),
 	...[tableOfContents, methodDocumentation],
-	...['extend', 'utilization', 'contribute', 'code_of_conduct', 'security_vulnerabilities', 'license'].map(bundle),
-	doc('changes')
+	...['extend', 'utilization'].map(bundle),
+
+	...['contribute', 'code_of_conduct', 'security_vulnerabilities', 'change_log', 'license'].map(bundle),
 ]);
+
