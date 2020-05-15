@@ -273,9 +273,6 @@ export default {
 
 All Available Methods
 
-
-
-
 - [all](#all)
 - [boolean](#boolean)
 - [empty](#empty)
