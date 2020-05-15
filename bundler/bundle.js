@@ -32,6 +32,6 @@ ReadMe([
 	...[tableOfContents, methodDocumentation],
 	...['extend', 'utilization'].map(bundle),
 
-	...['contribute', 'code_of_conduct', 'security_vulnerabilities', 'change_log', 'license'].map(bundle),
+	...['contribute', 'code_of_conduct', 'security_vulnerabilities', 'change_log', 'versioning', 'license'].map(bundle),
 ]);
 
