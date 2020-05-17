@@ -6,21 +6,13 @@
 [![npm version](https://img.shields.io/npm/v/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
 
 
-## Purpose
+---
+
+## Vuejs Form Mission Statement
 
 ---
 
-Inspired by a data centric approach this forms & form validation package (Inspired by Laravel) is completely decoupled from any component or UI library/package.
-
-
-In fact, Vuejs Form _**works with any**_
-- Ui Component Package (Element UI, Vuetify, Keen UI, etc...)
-- Reactive Framework (Vue, React, Angular)
-- Within Vanilla Javascript
-
-Vuejs Form's _**zero dependency**_ setup enables seamless integration into just about any javascript setup.
-
-Supporting _**Four Official Api's**_, the ability to create conversationally readable, flexibly dynamic, & simply powerful forms is easier than ever --- without losing any benefits of your current implementation of preferred setup.
+![Vue Form AKA Vuejs Form Mission Statement For Building Vue Validation & Javascript Validated Forms](https://github.com/zhorton34/vuejs-form/raw/master/bundler/vuejs-form-purpose.png "Vue JS Form Package Purpose Journal Text")
 
 
 **Four Official Apis**
@@ -29,6 +21,7 @@ Supporting _**Four Official Api's**_, the ability to create conversationally rea
 - [Rules Api](#rules-api)
 - [Validator Api](#validator-api)
 - [Error Messages Api](#error-messages-api)
+
 
 
 
@@ -2447,16 +2440,26 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ## Change Log
 
 ---
-
-- [Release 1.2.2 (Minor)](#1.2.2)
-- [Release 1.2.1 (Minor)](#1.2.1)
-- [Release 1.2.0 (Major)](#1.2.0)
-- [Release 1.1.1](#1.1.1)
-- [Release 1.1.0](#1.1.0)
+- [Release 1.2.3 (Minor)](#release-123)
+- [Release 1.2.2 (Minor)](#release-122)
+- [Release 1.2.1 (Minor)](#release-121)
+- [Release 1.2.0 (Major)](#release-120)
+- [Release 1.1.1](#release-111)
+- [Release 1.1.0](#release-110)
 
 ---
 
-### 1.2.2
+### Release 1.2.3
+
+---
+
+- Updated Change Log Release Link References
+- Updated Purpose.md Documentation To Us Image Notepad Message 
+
+
+---
+
+### Release 1.2.2
 
 ---
 
@@ -2467,7 +2470,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ---
 
-### 1.2.1
+### Release 1.2.1
 
 ---
 
@@ -2477,7 +2480,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ---
 
-### 1.2.0
+### Release 1.2.0
 
 ---
 
@@ -2489,7 +2492,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ---
 
-### 1.1.1
+### Release 1.1.1
 
 ---
 
@@ -2510,7 +2513,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ---
 
-### 1.1.0
+### Release 1.1.0
 
 ---
 

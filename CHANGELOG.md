@@ -3,16 +3,26 @@
 ## Change Log
 
 ---
-
-- [Release 1.2.2 (Minor)](#1.2.2)
-- [Release 1.2.1 (Minor)](#1.2.1)
-- [Release 1.2.0 (Major)](#1.2.0)
-- [Release 1.1.1](#1.1.1)
-- [Release 1.1.0](#1.1.0)
+- [Release 1.2.3 (Minor)](#release-123)
+- [Release 1.2.2 (Minor)](#release-122)
+- [Release 1.2.1 (Minor)](#release-121)
+- [Release 1.2.0 (Major)](#release-120)
+- [Release 1.1.1](#release-111)
+- [Release 1.1.0](#release-110)
 
 ---
 
-### 1.2.2
+### Release 1.2.3
+
+---
+
+- Updated Change Log Release Link References
+- Updated Purpose.md Documentation To Us Image Notepad Message 
+
+
+---
+
+### Release 1.2.2
 
 ---
 
@@ -23,7 +33,7 @@
 
 ---
 
-### 1.2.1
+### Release 1.2.1
 
 ---
 
@@ -33,7 +43,7 @@
 
 ---
 
-### 1.2.0
+### Release 1.2.0
 
 ---
 
@@ -45,7 +55,7 @@
 
 ---
 
-### 1.1.1
+### Release 1.1.1
 
 ---
 
@@ -66,7 +76,7 @@
 
 ---
 
-### 1.1.0
+### Release 1.1.0
 
 ---
 
