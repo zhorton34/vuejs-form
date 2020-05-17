@@ -33,7 +33,11 @@ Supporting _**Four Official Api's**_, the ability to create conversationally rea
 
 
 
+---
+
 ## Installation
+
+---
 
 ### NPM
 
@@ -49,23 +53,25 @@ yarn add vuejs-form --save
 
 ### CDN
 
-#### Minimized CDN
 ```bash
 <script src='https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.min.js'></script>
 ```
 
-#### Non Minimized CDN
-```bash
-<script src='https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.js'></script>
-```
-
-
+---
 
 ## Playground Examples
+
+---
+
 - [Vue Example One (Live Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
 - [Vue Example Two (Live Example)](https://codepen.io/zhorton34/pen/xxwaYez)
 
+
+---
+
 ## Vue Example One
+
+---
 
 > Show First Error For Each Field And
 > 
@@ -124,8 +130,11 @@ export default {
 }
 ```
 
+---
 
 ## Vue Example Two
+
+---
 
 > Show all form errors for all form fields
 >
@@ -210,9 +219,11 @@ export default {
 }
 ```
 
+---
+
 ## Form API
 
-All Available Methods
+---
 
 - [all](#all)
 - [boolean](#boolean)
@@ -233,7 +244,12 @@ All Available Methods
 - [toArray](#toarray)
 - [wrap](#wrap)
 
+---
+
 ## Validator Api
+
+---
+
 - [form.rules({...})](#form-register-rules)
 - [form.messages({...})](#form-customize-error-messages)
 - [form.validator(...)](#form-validator-instance)
@@ -241,7 +257,12 @@ All Available Methods
 - [form.hasValidator()](#form-has-validator)
 - [form.setValidator({...})](#form-set-rules)
 
+---
+
 ## Rules Api
+
+---
+
 - [accepted](#accepted-rule)
 - [alpha](#alpha-rule)
 - [alpha_dash](#alpha_dash-rule)
@@ -276,24 +297,32 @@ All Available Methods
 - [url](#url-rule)
 - [within](#within-rule)
 
+---
+
 ## Error Messages Api
-> form.errors() Methods
-- [any()](#any-errors)
-- [all()](#all-errors)
-- [list()](#list-errors)
-- [set(errors)](#set-errors)
-- [forget()](#forget-errors)
-- [has(field)](#has-error)
-- [get(field)](#get-error)
-- [list(field)](#list-error)
-- [add(field, message)](#add-error)
-- [set(field, messages)](#set-field-errors)
-- [forget(field)](#forget-field)
-- [getValidator()](#get-errors-validator)
+
+---
+
+- [form.errors().any()](#any-errors)
+- [form.errors().all()](#all-errors)
+- [form.errors().list()](#list-errors)
+- [form.errors().set(errors)](#set-errors)
+- [form.errors().forget()](#forget-errors)
+- [form.errors().has(field)](#has-error)
+- [form.errors().get(field)](#get-error)
+- [form.errors().list(field)](#list-error)
+- [form.errors().add(field, message)](#add-error)
+- [form.errors().set(field, messages)](#set-field-errors)
+- [form.errors().forget(field)](#forget-field)
+- [form.errors().getValidator()](#get-errors-validator)
 
 
+
+---
 
 ## Quick Vue Example
+
+---
 
 ```html
 <template>
@@ -368,19 +397,12 @@ export default {
 ```
 
 
-## Validators Api
-> `See vuejs-validators documenation for available validator api, rules api, validator hooks api & error messages api`
-- [Validators (NPM)](https://www.npmjs.com/package/vuejs-validators)
-- [Validators (Github)](https://github.com/zhorton34/vuejs-validators)
-
-## Form API
-
-All Available Methods
-
-
-
+---
 
 ## Validator Api
+
+---
+
 - [form.rules({...})](#form-register-rules)
 - [form.messages({...})](#form-customize-error-messages)
 - [form.validator(...)](#form-validator-instance)
@@ -1792,7 +1814,12 @@ ExampleForm.wrap('data')
 
 ```
 
+---
+
 ## Extend Api
+
+---
+
 Extend and append functionality to just about every single major service this package provides
 
 - [Extend Form Using Macros](#extend-form-using-macros)
@@ -2189,7 +2216,11 @@ export default {
 ```
 
 
+---
+
 ## Utilization
+
+---
 
 ```js
 import form from 'vuejs-form'
@@ -2372,14 +2403,22 @@ form().macro((key, value) => ({ [key]: value.split('@') })).all()
 
 
 
+---
+
 ## Contribute
+
+---
 
 PRs are welcomed to this project.
 If you want to improve the vuejs-form library, add
 functionality or improve the docs please feel free to submit a PR.
 
 
-### Code Of Conduct
+---
+
+## Code Of Conduct
+
+---
 
 The Clean Code Studio code of conduct is derived from Laravel code of of conduct. Any violations
 of the code of conduct may be reported to Zachary Horton (zak@cleancode.studio)
@@ -2393,18 +2432,38 @@ of the code of conduct may be reported to Zachary Horton (zak@cleancode.studio)
 - Behavior that can be reasonably considered harassment will not be tolerated.
 
 
-### Security Vulnerabilities
+---
+
+## Security Vulnerabilities
+
+---
 
 If you discover a security vulnerability within Clean Code Studio Packages Or Specifically within vuejs-form, please
 send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerabilities will be promptly addressed.
 
 
+---
+
 ## Change Log
 
-- [Release 1.2.1(Minor)](#1.2.1)
-- [Release 1.2.0(Major)](#1.2.0)
+---
+
+- [Release 1.2.2 (Minor)](#1.2.2)
+- [Release 1.2.1 (Minor)](#1.2.1)
+- [Release 1.2.0 (Major)](#1.2.0)
 - [Release 1.1.1](#1.1.1)
 - [Release 1.1.0](#1.1.0)
+
+---
+
+### 1.2.2
+
+---
+
+- Updated Document Headers
+- Removed api.md section of Documentation
+- Removed bloated docs from setup.md
+- Added cdn installation and npm installation examples
 
 ---
 
@@ -2463,7 +2522,11 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 
 
+---
+
 ## Versioning
+
+---
 
 > Vuejs-Form Will Implement Semantic Versioning
 > 
@@ -2479,6 +2542,10 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 - [Learn More About Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning)
 
 
+---
+
 ## License
+
+---
 
 MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/channel/UCq0m4ebGqurYQLwD-1aYsvg)

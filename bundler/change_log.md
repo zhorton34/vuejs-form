@@ -1,9 +1,25 @@
+---
+
 ## Change Log
 
-- [Release 1.2.1(Minor)](#1.2.1)
-- [Release 1.2.0(Major)](#1.2.0)
+---
+
+- [Release 1.2.2 (Minor)](#1.2.2)
+- [Release 1.2.1 (Minor)](#1.2.1)
+- [Release 1.2.0 (Major)](#1.2.0)
 - [Release 1.1.1](#1.1.1)
 - [Release 1.1.0](#1.1.0)
+
+---
+
+### 1.2.2
+
+---
+
+- Updated Document Headers
+- Removed api.md section of Documentation
+- Removed bloated docs from setup.md
+- Added cdn installation and npm installation examples
 
 ---
 

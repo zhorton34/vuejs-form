@@ -28,7 +28,7 @@ const CodeOfConduct = (content = []) => writeFileSync('code_of_conduct.md', cont
 ChangeLog([bundle('change_log')]);
 CodeOfConduct([bundle('code_of_conduct')]);
 ReadMe([
-	...['badges', 'purpose', 'header', 'installation', 'highlight', 'vue', 'api', 'validator'].map(bundle),
+	...['badges', 'purpose', 'header', 'installation', 'highlight', 'vue', 'validator'].map(bundle),
 	...[tableOfContents, methodDocumentation],
 	...['extend', 'utilization'].map(bundle),
 

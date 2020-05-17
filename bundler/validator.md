@@ -1,4 +1,9 @@
+---
+
 ## Validator Api
+
+---
+
 - [form.rules({...})](#form-register-rules)
 - [form.messages({...})](#form-customize-error-messages)
 - [form.validator(...)](#form-validator-instance)

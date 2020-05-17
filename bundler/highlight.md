@@ -1,8 +1,18 @@
+---
+
 ## Playground Examples
+
+---
+
 - [Vue Example One (Live Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
 - [Vue Example Two (Live Example)](https://codepen.io/zhorton34/pen/xxwaYez)
 
+
+---
+
 ## Vue Example One
+
+---
 
 > Show First Error For Each Field And
 > 
@@ -61,8 +71,11 @@ export default {
 }
 ```
 
+---
 
 ## Vue Example Two
+
+---
 
 > Show all form errors for all form fields
 >
@@ -147,9 +160,11 @@ export default {
 }
 ```
 
+---
+
 ## Form API
 
-All Available Methods
+---
 
 - [all](#all)
 - [boolean](#boolean)
@@ -170,7 +185,12 @@ All Available Methods
 - [toArray](#toarray)
 - [wrap](#wrap)
 
+---
+
 ## Validator Api
+
+---
+
 - [form.rules({...})](#form-register-rules)
 - [form.messages({...})](#form-customize-error-messages)
 - [form.validator(...)](#form-validator-instance)
@@ -178,7 +198,12 @@ All Available Methods
 - [form.hasValidator()](#form-has-validator)
 - [form.setValidator({...})](#form-set-rules)
 
+---
+
 ## Rules Api
+
+---
+
 - [accepted](#accepted-rule)
 - [alpha](#alpha-rule)
 - [alpha_dash](#alpha_dash-rule)
@@ -213,18 +238,22 @@ All Available Methods
 - [url](#url-rule)
 - [within](#within-rule)
 
+---
+
 ## Error Messages Api
-> form.errors() Methods
-- [any()](#any-errors)
-- [all()](#all-errors)
-- [list()](#list-errors)
-- [set(errors)](#set-errors)
-- [forget()](#forget-errors)
-- [has(field)](#has-error)
-- [get(field)](#get-error)
-- [list(field)](#list-error)
-- [add(field, message)](#add-error)
-- [set(field, messages)](#set-field-errors)
-- [forget(field)](#forget-field)
-- [getValidator()](#get-errors-validator)
+
+---
+
+- [form.errors().any()](#any-errors)
+- [form.errors().all()](#all-errors)
+- [form.errors().list()](#list-errors)
+- [form.errors().set(errors)](#set-errors)
+- [form.errors().forget()](#forget-errors)
+- [form.errors().has(field)](#has-error)
+- [form.errors().get(field)](#get-error)
+- [form.errors().list(field)](#list-error)
+- [form.errors().add(field, message)](#add-error)
+- [form.errors().set(field, messages)](#set-field-errors)
+- [form.errors().forget(field)](#forget-field)
+- [form.errors().getValidator()](#get-errors-validator)
 

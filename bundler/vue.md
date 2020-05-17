@@ -1,4 +1,8 @@
+---
+
 ## Quick Vue Example
+
+---
 
 ```html
 <template>
