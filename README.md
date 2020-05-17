@@ -6,7 +6,7 @@
 [![npm version](https://img.shields.io/npm/v/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
 
 
-![Vue Form AKA Vuejs Form Mission Statement For Building Vue Validation & Javascript Validated Forms](https://github.com/zhorton34/vuejs-form/raw/master/bundler/vuejs-form-purpose.png "Vue JS Form Package Purpose Journal Text")
+![Vue Form AKA Vuejs Form Mission Statement For Building Vue Validation & Javascript Validated Forms](https://github.com/zhorton34/vuejs-form/raw/master/bundler/vuejs-form-purpose-statement.png "Vue JS Form Package Purpose Journal Text")
 
 ---
 
@@ -2439,12 +2439,22 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ## Change Log
 
 ---
+- [Release 1.2.4 (Minor)](#release-124)
 - [Release 1.2.3 (Minor)](#release-123)
 - [Release 1.2.2 (Minor)](#release-122)
 - [Release 1.2.1 (Minor)](#release-121)
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.4
+
+---
+
+- Updated Purpose.md Documentation To Us Image Notepad Message 
+
 
 ---
 
