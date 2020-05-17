@@ -2401,7 +2401,8 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ## Change Log
 
-- [Release 1.2.0](#1.2.0)
+- [Release 1.2.1(Minor)](#1.2.1)
+- [Release 1.2.0(Major)](#1.2.0)
 - [Release 1.1.1](#1.1.1)
 - [Release 1.1.0](#1.1.0)
 
