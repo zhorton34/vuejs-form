@@ -4,22 +4,20 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg?style=flat-square)](https://github.com/zhorton34/vuejs-form/blob/master/package.json)
 [![npm version](https://img.shields.io/npm/v/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
+[![HitCount](http://hits.dwyl.com/zhorton34/vuejs-form.svg)](http://hits.dwyl.com/zhorton34/vuejs-form)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
+
+### That Vue Form 
+![Vue Js Form](https://api.github.com/images/icons/emoji/point_down.png "Pointing Down Emoji")
 
 ![Vue Form AKA Vuejs Form Mission Statement For Building Vue Validation & Javascript Validated Forms](https://github.com/zhorton34/vuejs-form/raw/master/bundler/vuejs-form-purpose-statement.png "Vue JS Form Package Purpose Journal Text")
 
----
 
-## Vue JS Form
 
----
 
-**Four Official Apis**
------------------------
-- [Form Api](#form-api)
-- [Rules Api](#rules-api)
-- [Validator Api](#validator-api)
-- [Error Messages Api](#error-messages-api)
+
 
 
 
@@ -27,9 +25,9 @@
 
 ---
 
-## Installation
+## <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' alt='coffee icon vuejs form installation title'/> Installation
 
----
+
 
 ### NPM
 
@@ -46,8 +44,20 @@ yarn add vuejs-form --save
 ### CDN
 
 ```bash
-<script src='https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.min.js'></script>
+<script src='https://unpkg.com/vuejs-form@latest/build/vuejs-form.min.js'></script>
 ```
+
+---
+
+## <img src='https://api.github.com/images/icons/emoji/monocle_face.png' height="50" width='50' /> Four Official Apis
+
+---
+
+- [Form Api](#form-api)
+- [Rules Api](#rules-api)
+- [Validator Api](#validator-api)
+- [Error Messages Api](#error-messages-api)
+
 
 ---
 
@@ -2439,6 +2449,8 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ## Change Log
 
 ---
+- [Release 1.2.6 (Minor)](#release-126)
+- [Release 1.2.5 (Minor)](#release-125)
 - [Release 1.2.4 (Minor)](#release-124)
 - [Release 1.2.3 (Minor)](#release-123)
 - [Release 1.2.2 (Minor)](#release-122)
@@ -2446,6 +2458,23 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.6
+
+---
+
+- Beautified Docs A Bit
+
+---
+
+### Release 1.2.5
+
+---
+
+- Updated Cdn Documented Link Examples To Reference Latest Instead Of Specific Version 
+
 
 ---
 

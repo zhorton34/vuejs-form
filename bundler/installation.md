@@ -1,8 +1,8 @@
 ---
 
-## Installation
+## <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' alt='coffee icon vuejs form installation title'/> Installation
 
----
+
 
 ### NPM
 
@@ -19,5 +19,16 @@ yarn add vuejs-form --save
 ### CDN
 
 ```bash
-<script src='https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.min.js'></script>
+<script src='https://unpkg.com/vuejs-form@latest/build/vuejs-form.min.js'></script>
 ```
+
+---
+
+## <img src='https://api.github.com/images/icons/emoji/monocle_face.png' height="50" width='50' /> Four Official Apis
+
+---
+
+- [Form Api](#form-api)
+- [Rules Api](#rules-api)
+- [Validator Api](#validator-api)
+- [Error Messages Api](#error-messages-api)

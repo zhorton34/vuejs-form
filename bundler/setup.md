@@ -36,7 +36,7 @@ let RegisterForm = form({
 ### CDN Setup
 
 ```
-<script src="https://unpkg.com/vuejs-form@1.1.0/build/vuejs-form.min.js"></script>
+<script src="https://unpkg.com/vuejs-form@latest/build/vuejs-form.min.js"></script>
 
 <script>
     let RegisterForm = form({
