@@ -1,6 +1,6 @@
 ---
 
-## <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' alt='coffee icon vuejs form installation title'/> Installation
+## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon vuejs form installation title'/> Installation
 
 
 
@@ -24,7 +24,7 @@ yarn add vuejs-form --save
 
 ---
 
-## <img src='https://api.github.com/images/icons/emoji/monocle_face.png' height="50" width='50' /> Four Official Apis
+## <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' /> Four Official Apis
 
 ---
 
