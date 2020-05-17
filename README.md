@@ -6,10 +6,26 @@
 [![npm version](https://img.shields.io/npm/v/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
 
 
-## That Vue Form (Simplified)
+## Purpose
+Inspired by a data centric approach this forms & form validation package (Inspired by Laravel) is completely decoupled from any component or UI library/package.
 
-> Convenient Wrapper For Form Input Data With Laravel Inspired Validation (Dependency Free ~ Usable Outside Externally From Vue)
 
+In fact, Vuejs Form **works with any**
+- Ui Component Package (Element UI, Vuetify, Keen UI, etc...)
+- Reactive Framework (Vue, React, Angular)
+- Within Vanilla Javascript
+
+Vuejs Form's **zero dependency** setup enables seamless integration into just about any javascript setup.
+
+Supporting Four Official Api's, the ability to create semantically understandable, powerful, and very flexible forms is as easy as ever -- without losing the benefits of your current of preferred setup.
+
+
+Four Primary Apis
+----------------
+- [Form Api](#form-api)
+- [Rules Api](#rules-api)
+- [Validator Api](#validator-api)
+- [Error Messages Api](#error-messages-api)
 
 ## Installation
 
