@@ -1,7 +1,30 @@
 ## Change Log
 
+- [Release 1.2.0](#1.2.0)
 - [Release 1.1.1](#1.1.1)
 - [Release 1.1.0](#1.1.0)
+
+---
+
+### 1.2.1
+
+---
+
+- Updated Documentation To Start With "Purpose" Of Package
+- Removed Documentation Content From Header.md
+- Caught Change Log Up
+
+---
+
+### 1.2.0
+
+---
+
+- Documentation Updated
+- First Official Stable Release
+- Semantic Versioning Officially Supported
+
+ 
 
 ---
 

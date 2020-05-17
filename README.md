@@ -6,9 +6,31 @@
 [![npm version](https://img.shields.io/npm/v/vuejs-form.svg?style=flat-square)](http://badge.fury.io/js/vuejs-form)
 
 
-## That Vue Form (Simplified)
+## Purpose
 
-> Convenient Wrapper For Form Input Data With Laravel Inspired Validation (Dependency Free ~ Usable Outside Externally From Vue)
+---
+
+Inspired by a data centric approach this forms & form validation package (Inspired by Laravel) is completely decoupled from any component or UI library/package.
+
+
+In fact, Vuejs Form _**works with any**_
+- Ui Component Package (Element UI, Vuetify, Keen UI, etc...)
+- Reactive Framework (Vue, React, Angular)
+- Within Vanilla Javascript
+
+Vuejs Form's _**zero dependency**_ setup enables seamless integration into just about any javascript setup.
+
+Supporting _**Four Official Api's**_, the ability to create conversationally readable, flexibly dynamic, & simply powerful forms is easier than ever --- without losing any benefits of your current implementation of preferred setup.
+
+
+**Four Official Apis**
+-----------------------
+- [Form Api](#form-api)
+- [Rules Api](#rules-api)
+- [Validator Api](#validator-api)
+- [Error Messages Api](#error-messages-api)
+
+
 
 
 ## Installation
@@ -2379,8 +2401,31 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ## Change Log
 
+- [Release 1.2.0](#1.2.0)
 - [Release 1.1.1](#1.1.1)
 - [Release 1.1.0](#1.1.0)
+
+---
+
+### 1.2.1
+
+---
+
+- Updated Documentation To Start With "Purpose" Of Package
+- Removed Documentation Content From Header.md
+- Caught Change Log Up
+
+---
+
+### 1.2.0
+
+---
+
+- Documentation Updated
+- First Official Stable Release
+- Semantic Versioning Officially Supported
+
+ 
 
 ---
 

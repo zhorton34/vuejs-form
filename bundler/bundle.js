@@ -23,12 +23,12 @@ const methodDocumentation = methods.map((file) => {
 const bundle = file => readFileSync(`bundler/${file}.md`, 'utf-8');
 const ReadMe = (content = []) => writeFileSync('README.md', content.join('\n\n'));
 const ChangeLog = (content = []) => writeFileSync('CHANGELOG.md', content.join('\n\n'));
-const CodeOfConduct = (content = []) => writeFileSync('code_of_conducts.md', content.join('\n\n'));
+const CodeOfConduct = (content = []) => writeFileSync('code_of_conduct.md', content.join('\n\n'));
 
 ChangeLog([bundle('change_log')]);
 CodeOfConduct([bundle('code_of_conduct')]);
 ReadMe([
-	...['badges', 'header', 'installation', 'highlight', 'vue', 'api', 'validator'].map(bundle),
+	...['badges', 'purpose', 'header', 'installation', 'highlight', 'vue', 'api', 'validator'].map(bundle),
 	...[tableOfContents, methodDocumentation],
 	...['extend', 'utilization'].map(bundle),
 
