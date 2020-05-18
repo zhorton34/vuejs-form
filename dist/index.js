@@ -58,6 +58,10 @@ var form = function form(dataOrValidatable, data) {
 
 var validatable = require('vuejs-validators');
 
+var _require = require('vuejs-validators'),
+    MessageBag = _require.MessageBag,
+    MessageBagFactory = _require.MessageBagFactory;
+
 var ValidatableForm = function ValidatableForm() {
   var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   return form(validatable, data);
@@ -69,3 +73,5 @@ module.exports.SimpleForm = form;
 module.exports.validator = validatable;
 module.exports["default"] = ValidatableForm;
 module.exports.ValidatableForm = ValidatableForm;
+module.exports.MessageBag = MessageBag;
+module.exports.MessageBagFactory = MessageBagFactory;

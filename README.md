@@ -1509,6 +1509,52 @@ form.errors().list('name');
 Output: []
 ``` 
 
+---
+
+## Extending the Error Bag
+
+---
+
+---
+
+### Error Bag Macro 
+
+---
+Adds custom method on form error bag instance
+
+```js 
+let example = form(data).rules(rules);
+
+let example.errors().macro('count', function () {
+    return this.list().length;
+});
+
+
+// example.errors().count() === example.errors().list().length
+ ```
+
+
+---
+
+### Error Bag ForceMacro
+
+---
+Allows you to overwrite pre-defined macro and over write core error message bag functions (Use With Caution)
+
+```js
+let example = form({ name: '' }).rules({ name: 'required|min:3' }).validate();
+
+example.errors().get('name'); // Outputs: "Name is a required field"
+
+example.errors().forceMacro('get', function (field) {
+    if (this.has(field)) {
+        return this.list(field).join(', ') + '.';
+    }
+});
+
+example.errors().get('name'); // Outputs: "Name is a required field, name must have at least 3 characters."
+```  
+
 
 - [all](#all
 - [boolean](#boolean
@@ -1825,6 +1871,7 @@ Extend and append functionality to just about every single major service this pa
 
 - [Extend Form Using Macros](#extend-form-using-macros)
 - [Extend Validator Using Macros](#extend-validator-using-macros)
+- [Extend Error Messages Bag Using Macros](#extend-error-messages-api)
 - [Add Custom Error Messages](#extending-custom-error-messages)
 - [Create Custom Validation Rule](#extending-custom-rules---single-rule)
 - [Create Custom Validation Rules](#extending-custom-rules---multiple-rules)
@@ -1870,8 +1917,57 @@ let dictionary = { ru: { email: "Эл.почта" } };
 example.validator().translate({ locale, dictionary });
 ```
 
+
+---
+
+#### Extending Error Messages Api
+
+---
+
+---
+
+##### Error Bag Macro
+
+---
+Adds custom method on form error bag instance
+
+```js 
+let example = form(data).rules(rules);
+
+let example.errors().macro('count', function () {
+    return this.list().length;
+});
+
+
+// example.errors().count() === example.errors().list().length
+ ```
+
+
+---
+
+##### Error Bag ForceMacro
+
+---
+Allows you to overwrite pre-defined macro and over write core error message bag functions (Use With Caution)
+
+```js
+let example = form({ name: '' }).rules({ name: 'required|min:3' }).validate();
+
+example.errors().get('name'); // Outputs: "Name is a required field"
+
+example.errors().forceMacro('get', function (field) {
+    if (this.has(field)) {
+        return this.list(field).join(', ') + '.';
+    }
+});
+
+example.errors().get('name'); // Outputs: "Name is a required field, name must have at least 3 characters."
+```  
+
 #### Extending: Custom Error Messages
-Customize error messages for specific rules on any given field
+- This has nothing to do with the error messages Api
+- These are the literal string output a rule message will display when it fails
+- Here we'll customize error messages for specific rules on any given field
 
 - Globally, each rule provides a default error message
 - Easily override rule's default error message
@@ -2448,6 +2544,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ## Change Log
 
 ---
+- [Release 1.2.7 (Minor)](#release-127)
 - [Release 1.2.6 (Minor)](#release-126)
 - [Release 1.2.5 (Minor)](#release-125)
 - [Release 1.2.4 (Minor)](#release-124)
@@ -2457,6 +2554,17 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.7
+
+---
+- Vuejs Validations Ref Updated
+- MessageBag Added to Package Exports
+- MessageBagFactory Added to Package Exports
+- Error Messages Api Documentation Readme Updated
+
 
 ---
 

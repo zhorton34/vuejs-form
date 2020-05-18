@@ -3,6 +3,7 @@
 ## Change Log
 
 ---
+- [Release 1.2.7 (Minor)](#release-127)
 - [Release 1.2.6 (Minor)](#release-126)
 - [Release 1.2.5 (Minor)](#release-125)
 - [Release 1.2.4 (Minor)](#release-124)
@@ -12,6 +13,17 @@
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.7
+
+---
+- Vuejs Validations Ref Updated
+- MessageBag Added to Package Exports
+- MessageBagFactory Added to Package Exports
+- Error Messages Api Documentation Readme Updated
+
 
 ---
 
