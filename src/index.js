@@ -65,7 +65,9 @@ const form = function (dataOrValidatable, data) {
 	return (new VueForm(data)).proxy();
 };
 
-const validatable = require('vuejs-validators');
+const validator = require('vuejs-validators');
+const { MessageBag, MessageBagFactory } = require('vuejs-validators');
+
 
 const ValidatableForm = function ValidatableForm(data = {}) {
 	return form(validatable, data);
@@ -77,3 +79,7 @@ module.exports.SimpleForm = form;
 module.exports.validator = validatable;
 module.exports.default = ValidatableForm;
 module.exports.ValidatableForm = ValidatableForm;
+
+module.exports.MessageBag = MessageBag;
+module.exports.MessageBagFactory = MessageBagFactory;
+

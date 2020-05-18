@@ -1108,3 +1108,49 @@ form.errors().list('name');
 ```
 Output: []
 ``` 
+
+---
+
+## Extending the Error Bag
+
+---
+
+---
+
+### Error Bag Macro 
+
+---
+Adds custom method on form error bag instance
+
+```js 
+let example = form(data).rules(rules);
+
+let example.errors().macro('count', function () {
+    return this.list().length;
+});
+
+
+// example.errors().count() === example.errors().list().length
+ ```
+
+
+---
+
+### Error Bag ForceMacro
+
+---
+Allows you to overwrite pre-defined macro and over write core error message bag functions (Use With Caution)
+
+```js
+let example = form({ name: '' }).rules({ name: 'required|min:3' }).validate();
+
+example.errors().get('name'); // Outputs: "Name is a required field"
+
+example.errors().forceMacro('get', function (field) {
+    if (this.has(field)) {
+        return this.list(field).join(', ') + '.';
+    }
+});
+
+example.errors().get('name'); // Outputs: "Name is a required field, name must have at least 3 characters."
+```  
