@@ -65,7 +65,7 @@ const form = function (dataOrValidatable, data) {
 	return (new VueForm(data)).proxy();
 };
 
-const validator = require('vuejs-validators');
+const validatable = require('vuejs-validators');
 const { MessageBag, MessageBagFactory } = require('vuejs-validators');
 
 
