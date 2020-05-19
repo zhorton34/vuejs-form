@@ -1,7 +1,10 @@
+
 'use strict';
 
-const fieldsOf = require('../helpers/fieldsOf.js');
+const fieldsFrom = require('../helpers/fieldsOf.js');
 
-module.exports = function forget(...args) {
-    fieldsOf(this, args).has().forEach(property => delete this.data[property]);
+module.exports = function forget(...list) {
+    const fields = fieldsFrom(this, list);
+
+    this.data = fields.isEmpty() ? {} : this.except(...fields.toArray());
 };

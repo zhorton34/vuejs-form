@@ -1562,6 +1562,7 @@ example.errors().get('name'); // Outputs: "Name is a required field, name must h
 - [except](#except
 - [fill](#fill
 - [filled](#filled
+- [forceMacro](#forcemacro
 - [forget](#forget
 - [has](#has
 - [hasAny](#hasany
@@ -1679,6 +1680,40 @@ ExampleForm.filled('id', 'name') // false
 ExampleForm.filled('name', 'email') // true
 ```
 
+#### `forceMacro(key, fn)`
+forceMacro can be used to extend form object and FORCIBLY OVERWRITE base form behavior (Use VERY cautiously and prefer macro over forceMacro)
+
+```js
+import form from 'vuejs-form';
+
+form().forceMacro('all', function () {
+    return this.keys().reduce((list, field) => ({
+            ...list,  
+            [field]: { 
+                name: field, 
+                value: this.data[field],
+                errors: this.errors().list(field),
+            }
+        }), 
+    {});
+})
+
+form({ name: 'sam' }).rules({ name: 'required' }).validate();
+```
+
+```
+# forceMacro implementation of form.all() Outputs
+{
+    name: {
+        value: 'sam',
+        name: 'name',
+        errors: ['Name field is required']
+    }
+}
+```
+
+[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/forceMacro.js)
+
 #### `forget(propertyOne, propertyTwo, etc...)`
 
 The forget method will remove or "forget" a key value pair from the form input data
@@ -1742,29 +1777,14 @@ The macro method can be used to extend upon the form object:
 ```js
 import form from 'vuejs-form';
 
-form().macro('count', () => {
+form(data).macro('count', () => {
     return this.keys().length;
 });
 
-form().macro('mapInto', into => {
-    return this.toArray().reduce((accumulated, { key, value }) => ({
-            ...accumulated,
-            ...into(key, value)
-        }),
-    {});
-});
-
-const ExampleForm = form({
-    email: 'example@gmail',
-    password: 'secret',
-});
-
-ExampleForm.mapInto((key, value) => ({ [`example_form_${key}`]: value }));
-// { example_form_email: 'example@gmail.com', 'example_form_password': 'secret' };
-
+// form.count() === form.keys().length
 ```
 
-[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/extend.js)
+[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/macro.js)
 
 #### `make({ ... })`
 
@@ -2560,11 +2580,9 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ### Release 1.2.7
 
 ---
-- Vuejs Validations Ref Updated
-- MessageBag Added to Package Exports
-- MessageBagFactory Added to Package Exports
-- Error Messages Api Documentation Readme Updated
-
+- overwrite method outdated in place of forceMacro 
+- macro and forceMacro test coverage implementation finalized
+- macro and forceMacro documentation with examples created and bundled
 
 ---
 
@@ -2573,6 +2591,10 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ---
 
 - Beautified Docs A Bit
+- Vuejs Validations Ref Updated
+- MessageBag Added to Package Exports
+- MessageBagFactory Added to Package Exports
+- Error Messages Api Documentation Readme Updated
 
 ---
 
