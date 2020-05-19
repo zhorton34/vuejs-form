@@ -1,31 +1,18 @@
 # `macro(key, fn)`
 
-The macro method can be used to extend upon the form object:
+The macro method can be used to extend the forms base behavior with custom methods/functions
 
+_NOTE: Use localMacro if you only want to extend a specific form instance instead of all form instances._
+ 
 ```js
 import form from 'vuejs-form';
 
-form().macro('count', () => {
+form(data).macro('count', () => {
     return this.keys().length;
 });
 
-form().macro('mapInto', into => {
-    return this.toArray().reduce((accumulated, { key, value }) => ({
-            ...accumulated,
-            ...into(key, value)
-        }),
-    {});
-});
-
-const ExampleForm = form({
-    email: 'example@gmail',
-    password: 'secret',
-});
-
-ExampleForm.mapInto((key, value) => ({ [`example_form_${key}`]: value }));
-// { example_form_email: 'example@gmail.com', 'example_form_password': 'secret' };
-
+// form.count() === form.keys().length
 ```
 
-[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/extend.js)
+[View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/macro.js)
 

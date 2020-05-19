@@ -19,11 +19,15 @@
 ### Release 1.2.7
 
 ---
-- Vuejs Validations Ref Updated
-- MessageBag Added to Package Exports
-- MessageBagFactory Added to Package Exports
-- Error Messages Api Documentation Readme Updated
-
+- overwrite method outdated in place of forceMacro 
+- macro method refactored, in depth testing and documentation
+- localMacro method created, in depth testing, and documentation
+- forceMacro method created, in depth testing, and documentation
+- forceLocalMacro method created, in depth testing, and documentation
+- Form Api is macro capable
+- Validator Api is macro capable
+- Error Messages Api is macro capable
+- Macro capabilities documentation for each macro type
 
 ---
 
@@ -32,6 +36,10 @@
 ---
 
 - Beautified Docs A Bit
+- Vuejs Validations Ref Updated
+- MessageBag Added to Package Exports
+- MessageBagFactory Added to Package Exports
+- Error Messages Api Documentation Readme Updated
 
 ---
 

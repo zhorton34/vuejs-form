@@ -12,8 +12,8 @@ const runSingleTest = test.indexOf('--') !== -1;
 test = test.replace('--', '');
 test += '_test.js';
 
-const methods = fs.readdirSync(path.join(__dirname, '../src/methods'));
 const tests = fs.readdirSync(path.join(__dirname, 'methods'));
+const methods = fs.readdirSync(path.join(__dirname, '../src/methods'));
 
 tests.forEach((file) => {
   describe(file.replace('_test.js', '()'), () => {

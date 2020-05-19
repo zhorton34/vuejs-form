@@ -30,7 +30,7 @@ CodeOfConduct([bundle('code_of_conduct')]);
 ReadMe([
 	...['badges', 'purpose', 'header', 'installation', 'highlight', 'vue', 'validator'].map(bundle),
 	...[tableOfContents, methodDocumentation],
-	...['extend', 'utilization'].map(bundle),
+	...['extend', 'macros', 'utilization'].map(bundle),
 
 	...['contribute', 'code_of_conduct', 'security_vulnerabilities', 'change_log', 'versioning', 'license'].map(bundle),
 ]);
