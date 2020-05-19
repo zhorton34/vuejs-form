@@ -371,7 +371,7 @@ eval("\n\nmodule.exports = function keys() {\n  return Object.keys(this.data);\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n/**\n * Add/Extend Form Functionality On Specific Instance With Custom Methods Using LocalMacro\n *\n * @param name\n * @param fn\n */\n\nmodule.exports = function localMacro(name, fn) {\n  if (Object.keys(this.constructor.prototype).includes(name)) {\n    return console.error(\"Cant extend form with \".concat(name, \" localMacro, it already exists (use forceLocalMacro if you want to forcibly overwrite base behavior or previously set macro/localMacro\"));\n  }\n\n  this[name] = fn;\n};\n\n//# sourceURL=webpack://form/./dist/methods/localMacro.js?");
+eval("\n/**\n * Add/Extend Form Functionality On Specific Instance With Custom Methods Using LocalMacro\n *\n * @param name\n * @param fn\n */\n\nmodule.exports = function localMacro(name, fn) {\n  if (typeof this.constructor.prototype[name] !== 'undefined' || typeof this[name] !== 'undefined') {\n    console.error(\"Cant extend form with \".concat(name, \" localMacro, it already exists (use forceLocalMacro if you want to forcibly overwrite base behavior or previously set macro/localMacro\"));\n  } else {\n    this[name] = fn;\n  }\n};\n\n//# sourceURL=webpack://form/./dist/methods/localMacro.js?");
 
 /***/ }),
 
