@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * Similar to "macro" function, with ability to forcibly overwrite base prototype methods and existing macro methods
+ * Similar to "localMacro" function, with ability to forcibly overwrite base prototype methods and existing macro methods (On Local Instance instead of globally)
  * (See Laravel Macros For In Depth Explanation)
  *
  * @param name
@@ -17,5 +17,4 @@ module.exports = function forceMacro(name, fn) {
 	 `);
 
 	this[name] = fn;
-	this.constructor.prototype[name] = fn;
 };
