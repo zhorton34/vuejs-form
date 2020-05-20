@@ -1,8 +1,4 @@
----
-
-## Code Of Conduct
-
----
+### Code Of Conduct
 
 The Clean Code Studio code of conduct is derived from Laravel code of of conduct. Any violations
 of the code of conduct may be reported to Zachary Horton (zak@cleancode.studio)

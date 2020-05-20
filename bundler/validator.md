@@ -148,6 +148,16 @@ form().macro('setSwitchableValidators', (first, second) => {
 ```  
 ## Rules Api
 - [accepted](#accepted-rule)
+- [date](#date-rule)
+- [date_equals](#date-equals-rule)
+- [before (date)](#before-rule)
+- [before_or_equal (date)](#before-or-equal-rule)
+- [after (date)](#after-rule)
+- [after_or_equal (date)](#after-or-equal-rule)
+- [greater_than (numeric)](#greater-than-rule)
+- [gte (Greater than or equal numeric)](#gte-rule)
+- [less_than (numeric)](#less-then-rule)
+- [lte (Less than or equal numeric)](#lte-rule)
 - [alpha](#alpha-rule)
 - [alpha_dash](#alpha_dash-rule)
 - [alpha_num](#alpha_num-rule)
@@ -180,6 +190,178 @@ form().macro('setSwitchableValidators', (first, second) => {
 - [string](#string-rule)
 - [url](#url-rule)
 - [within](#within-rule)
+
+
+
+### Date Equals Rule
+(Date)
+The field under validation must be the same date as the rules date
+
+> Passes Date Equals Rule
+```js
+let form = { 
+    one: '4-22-1997',
+    two: 'April 22 2025' 
+}
+
+let rules = {
+  one: 'date_equals:4-22-1997',
+  two: 'date_equals:April 22 2025',
+}
+```
+
+> Fails Date Equals Rule
+```js
+let form = { 
+    one: '4-22-1997',
+    two: '2-12-1997' 
+}
+
+let rules = {
+  one: 'date_equals:4-24-1998',
+  two: 'date_equals:1-11-1996',
+}
+```
+
+### Before Rule
+(Date)
+
+The Field under evaluation must be before the compared date
+
+> Passes Before (Date) Rule
+```
+let form = { 
+    one: '4-22-1997', 
+    two: '2-12-1997' 
+}
+
+let rules = {
+  one: 'before:4-22-1998',
+  two: 'before:2-12-1997',
+}
+```
+
+> Fails Before (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997', 
+    two: '3-12-1997' 
+}
+
+let rules = {
+  one: 'before:4-22-1997',
+  two: 'before:2-3-1996',
+}
+```
+
+### Before Or Equal Rule
+(Date)
+The field under validation must be before or equal to the compared date.
+
+> Passes Before Or Equal (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997', 
+    two: '2-12-1997' 
+}
+
+let rules = {
+  one: 'before_or_equal:3-21-1998',
+  two: 'before_or_equal:2-12-1997',
+}
+```
+
+> Fails Before Or Equal (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997', 
+    two: '2-3-1997' 
+}
+
+let rules = {
+  one: 'before_or_equal:4-23-1997',
+  two: 'before_or_equal:2-3-1996',
+}
+```
+
+### After Rule
+(Date)
+
+The Field under evaluation must be after the compared date
+
+> Passes After (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997', 
+    two: '2-2-1997' 
+}
+
+let rules = {
+  one: 'after:4-23-1997',
+  two: 'after:2-3-1996',
+}
+```
+
+### Date Rule
+(Date)
+The field under validation must be a valid, non-relative date according to the new Date js constructor.
+
+> Passes Date Rule
+- 4.22.1997 
+- 4-22-1997
+- 4/22/1997
+- April 22 1997
+- Tuesday April 22 1997
+
+> Fails Date Rule
+- asdfweadf
+- 23423423
+- []
+
+> Fails After (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997', 
+    two: '2-12-1997' 
+}
+
+let rules = {
+  one: 'after:4-22-1998',
+  two: 'after:1-11-1996',
+}
+```
+
+
+### After Or Equal Rule
+(Date)
+The field under validation must be after or equal to the compared date.
+
+> Passes After Or Equal (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997',
+    two: '1-11-2013', 
+}
+
+let rules = {
+  one: 'after_or_equal:4-22-1997',
+  two: 'after_or_equal:2-12-2014',
+}
+```
+
+> Fails After Or Equal (Date) Rule
+```js
+let form = { 
+    one: '4-22-1997',
+    two: '2-12-1997' 
+}
+
+let rules = {
+  one: 'after_or_equal:4-23-1997',
+  two: 'after_or_equal:2-3-1996',
+}
+```
+
 
 ### Accepted Rule
 
@@ -384,6 +566,150 @@ form.password_confirmation = 'secret';
 form.validate().errors().any();
 ```
 
+### Greater Than Rule
+(Numeric)
+
+Number must be greater than compared value
+
+> Passing greater than rule
+```js
+
+let form = {
+    age: 24,
+    members: 19,
+    percentage: 0.4,
+};
+
+let rules = {
+    age: 'greater_than:13',
+    members: 'greater_than:10',
+    percentage: 'greater_than:0.35',
+};
+```
+
+> Failing greater than rule
+```js
+ let form = {
+     age: 24,
+     members: 19,
+     percentage: 0.4,
+ };
+ 
+ let rules = {
+     age: 'greater_than:24',
+     members: 'greater_than:100',
+     percentage: 'greater_than:0.9',
+ };
+```
+
+### Gte Rule
+(Greater Than Or Equal - Numeric)
+Number must be greater than or equal to compared value
+
+> Passing greater than or equal rule (gte)
+```js
+
+let form = {
+    age: 24,
+    members: 19,
+    percentage: 0.4,
+};
+
+let rules = {
+    age: 'gte:24',
+    members: 'gte:10',
+    percentage: 'gte:0.35',
+};
+```
+
+> Failing greater than or equal rule (gte)
+```js
+ 
+ let form = {
+     age: 24,
+     members: 19,
+     percentage: 0.4,
+ };
+ 
+ let rules = {
+     age: 'greater_than:25',
+     members: 'greater_than:100',
+     percentage: 'greater_than:0.9',
+ };
+```
+
+### Less Than Rule
+(Numeric)
+
+Number must be less than compared value
+
+> Passing less than rule
+```js
+
+let form = {
+    age: 24,
+    members: 19,
+    percentage: 0.4,
+} ;
+
+let rules = {
+    age: 'less_than:25',
+    members: 'less_than:20',
+    percentage: 'less_than:0.8',
+}
+```
+
+> Failing less than rule
+```js
+ let form = {
+     age: 24,
+     members: 19,
+     percentage: 0.4,
+ };
+ 
+ let rules = {
+     age: 'less_than:24',
+     members: 'less_than:10',
+     percentage: 'less_than:0.1',
+ }
+```
+
+
+### Lte Rule
+(Less than or equal - Numeric)
+
+Number must be less than or equal to compared value
+
+> Passing Less than or equal (lte) rule
+```js
+
+let form = {
+    age: 24,
+    members: 19,
+    percentage: 0.4,
+} ;
+
+let rules = {
+    age: 'lte:24',
+    members: 'lte:20',
+    percentage: 'lte:0.8',
+}
+```
+
+> Failing less than or equal (lte) rule
+```js
+ let form = {
+     age: 24,
+     members: 19,
+     percentage: 0.4,
+ };
+ 
+ let rules = {
+     age: 'less_than:24',
+     members: 'less_than:10',
+     percentage: 'less_than:0.5',
+ }
+```
 
 ### Different form Rule
 The given field value is different than another field value
