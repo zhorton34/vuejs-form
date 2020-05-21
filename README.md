@@ -3097,24 +3097,6 @@ functionality or improve the docs please feel free to submit a PR.
 
 ---
 
-## Code Of Conduct
-
----
-
-The Clean Code Studio code of conduct is derived from Laravel code of of conduct. Any violations
-of the code of conduct may be reported to Zachary Horton (zak@cleancode.studio)
-
-- Participants will be tolerant of opposing views.
-
-- Participants must ensure that their language and actions are free of personal attacks and disparaging personal remarks.
-
-- When interpreting the words and actions of others, participants should always assume good intentions.
-
-- Behavior that can be reasonably considered harassment will not be tolerated.
-
-
----
-
 ## Security Vulnerabilities
 
 ---
@@ -3128,6 +3110,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ## Change Log
 
 ---
+- [Release 1.2.9 (Minor)](#release-129)
 - [Release 1.2.8 (Minor)](#release-128)
 - [Release 1.2.7 (Minor)](#release-127)
 - [Release 1.2.6 (Minor)](#release-126)
@@ -3139,6 +3122,13 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.9
+
+---
+- Removed unused documentation assets
 
 ---
 

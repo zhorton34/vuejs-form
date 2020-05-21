@@ -3,6 +3,7 @@
 ## Change Log
 
 ---
+- [Release 1.2.9 (Minor)](#release-129)
 - [Release 1.2.8 (Minor)](#release-128)
 - [Release 1.2.7 (Minor)](#release-127)
 - [Release 1.2.6 (Minor)](#release-126)
@@ -14,6 +15,13 @@
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.9
+
+---
+- Removed unused documentation assets
 
 ---
 
