@@ -3,6 +3,7 @@
 ## Change Log
 
 ---
+- [Release 1.2.8 (Minor)](#release-128)
 - [Release 1.2.7 (Minor)](#release-127)
 - [Release 1.2.6 (Minor)](#release-126)
 - [Release 1.2.5 (Minor)](#release-125)
@@ -13,6 +14,23 @@
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.2.8
+
+---
+- date validation rule
+- date equals validation rule
+- before (date) validation rule
+- before_or_equal (date) validation rule
+- after (date) validation rule
+- after_or_equal (date) validation rule
+- less_than (numeric) validation rule
+- greater_than (numeric) validation rule
+- lte (less than or equal numeric) validation rule
+- gte (greater than or equal numeric) validation rule
+
 
 ---
 
