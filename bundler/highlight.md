@@ -1,42 +1,33 @@
 ---
 
 ## Playground Examples
+Curious, but not 100% on whether this is what you're looking for?
+Try vuejs-form out for yourself before installing -- here's some live examples ready for you to tinker away at! 
 
 ---
-
-- [Vue Example One (Live Example)](https://codepen.io/zhorton34/pen/zYvWZYz)
-- [Vue Example Two (Live Example)](https://codepen.io/zhorton34/pen/xxwaYez)
-
-
+- [Example One (Validate Form On Each User Submit)](https://codepen.io/zhorton34/pen/zYvWZYz)
+- [Example One (Validate Form On Each User Update)](https://codepen.io/zhorton34/pen/xxwaYez)
 ---
 
-## Vue Example One
+## Simple Vue Example
 
 ---
-
-> Show First Error For Each Field And
-> 
-> Only Validate Form (AKA find errors) when Form Data is submitted
 ```html
 <template>
     <div>        
-        <input type='text' v-model='form.name' />
-        <span v-if="form.errors().has('name')" v-text="form.errors().get('email')"></span>
+        <input type='email' v-model='form.email' placeholder="Email"/>
+        <span v-if="form.errors().has('email')">
+            {{ form.errors().get('email') }}
+        </span>
 
-        <input type='email' v-model='form.email' />
-        <span v-if="form.errors().has('email')" v-text="form.errors().get('email')"></span>
+        <input type='password' v-model='form.password' placeholder="Password"/>
+        <span v-if="form.errors().has('password')">
+            {{ form.errors().get('password') }}
+        </span>
 
-        <input type='password' v-model='form.password' />
-        <span v-if="form.errors().has('password')" v-text="form.errors().get('password')"></span>
+        <input type='password' v-model='form.password_confirmation' placeholder="Confirm Password"/> 
 
-        <input type='password' v-model='form.password_confirmation' />
-        <span v-if="form.errors().has('password_confirmation')" v-text="form.errors().get('password_confirmation')"></span>
- 
-        <hr>
-
-        <button :disabled='form.empty()' @click='submit'>
-            Complete
-        </button>
+        <button :disabled='form.empty()' @click='submit'>Submit</button>
     </div>
 </template>
 ```
@@ -46,9 +37,9 @@ import form from 'vuejs-form'
 export default {
     data: () => ({
         form: form({
-            email: '',
-            password: '',
-            password_confirmation: ''
+            email: '', 
+            password: '', 
+            password_confirmation: '' 
         })
         .rules({
             email: 'email|min:5|required',
@@ -63,9 +54,11 @@ export default {
     methods: {
         submit() {
             if (this.form.validate().errors().any()) return;
+            
+            alert('Success, form is validated!');
 
-            console.log('submit: ', this.form.only('email', 'password'));
-            console.log('submit: ', this.form.except('password_confirmation'));
+            console.log('form all(): ', this.form.all());
+            console.log('form except(): ', this.form.except('password_confirmation'));
         },
     }
 }
@@ -77,88 +70,6 @@ export default {
 
 ---
 
-> Show all form errors for all form fields
->
-> Re-validate Form Any time user updates form data for any field
-
-```html
-<template>
-    <div>
-        <div v-if="form.errors().any()" v-for="(message, key) in form.errors().list()" :key="`${key}.error`">
-            {{ message }}
-        </div>
-        
-        <input type='email' v-model='form.email' /> <br>
-        <input type='password' v-model='form.password' /> <br>
-        <input type='password' v-model='form.password_confirmation' /> <br>
-        
-        <hr>
-
-        <button :disabled='form.empty()' @click='submit'>
-            Complete
-        </button>
-    </div>
-</template>
-```
-```js
-import form from 'vuejs-form'
-
-export default {
-    data: () => ({
-        form: form({
-            email: '',
-            password: '',
-            password_confirmation: ''
-        })
-        .rules({
-            email: 'email|min:5|required',
-            password: 'required|min:5|confirmed'
-        })
-        .messages({
-            'email.email': ':attribute must be a valid email',
-            'email.min': ':attribute may not have less than :min characters',
-            'password.confirmed': 'Whoops, :attribute value does not match :confirmed value',
-        }),
-   }),
-
-   watch: {
-       /*--------------------------------------------------------------
-        | When Should Your Form "Validate", Providing Error Messages?
-        |--------------------------------------------------------------
-        | 
-        |   Form validates every time form data is updated. To
-        |   display errors on form submit, remove watcher &
-        |   move "this.form.validate()" over to submit()
-        |
-        */
-
-        ['form.data']: {
-            deep: true,
-            immediate: false,
-            handler: 'onFormChange'
-        }
-   },
-
-    methods: {
-        onFormChange(after, before) {
-             this.form.validate()
-        },
-       
-        submit() {
-            return this.form.errors().any() ? this.failed() : this.passed();
-        },
-
-        failed() {
-            console.log('errors: ', this.form.errors().all());
-        },
-
-        passed() {
-            console.log('data: ', this.form.all());
-            console.log('wrapped data: ', this.form.wrap('data'));
-        }
-    }
-}
-```
 
 ---
 
@@ -177,13 +88,42 @@ export default {
 - [hasAny](#hasany)
 - [input](#input)
 - [keys](#keys)
-- [macro](#macro)
 - [make](#make)
 - [missing](#missing)
 - [only](#only)
 - [set](#set)
 - [toArray](#toarray)
 - [wrap](#wrap)
+- **Extending Form Api**
+- [macro](#macros)
+- [localMacro](#macros)
+- [forceMacro](#macros)
+- [forceLocalMacro](#macros)
+
+---
+
+## Error Messages Api
+
+---
+
+- [form.errors().any()](#any-errors)
+- [form.errors().all()](#all-errors)
+- [form.errors().list()](#list-errors)
+- [form.errors().set(errors)](#set-errors)
+- [form.errors().forget()](#forget-errors)
+- [form.errors().has(field)](#has-error)
+- [form.errors().get(field)](#get-error)
+- [form.errors().list(field)](#list-error)
+- [form.errors().add(field, message)](#add-error)
+- [form.errors().set(field, messages)](#set-field-errors)
+- [form.errors().forget(field)](#forget-field)
+- [form.errors().getValidator()](#get-errors-validator)
+- **Extending Errors Api**
+- [form.errors().macro(name, fn)](#macros)
+- [form.errors().forceMacro(name, fn)](#macros)
+- [form.errors().localMacro(name, fn)](#macros)
+- [form.errors().forceLocalMacro(name, fn)](#macros)
+
 
 ---
 
@@ -193,17 +133,27 @@ export default {
 
 - [form.rules({...})](#form-register-rules)
 - [form.messages({...})](#form-customize-error-messages)
-- [form.validator(...)](#form-validator-instance)
-- [form.validate(...)](#validate-form-data)
 - [form.hasValidator()](#form-has-validator)
 - [form.setValidator({...})](#form-set-rules)
+- [form.validator()](#form-validator-instance)
+- [form.validate()](#validate-form-data)
+- **Validator Hooks (Documentation Stored in Vuejs Validators Repository)**
+- [form.validator().before(callbackHook) (see vuejs-validators repo)](https://github.com/zhorton34/vuejs-validators)
+- [form.validator().after(callbackHook) (see vuejs-validators repo)](https://github.com/zhorton34/vuejs-validators)
+- [form.validator().passed(callbackHook) (see vuejs-validators repo)](https://github.com/zhorton34/vuejs-validators)
+- [form.validator().failed(callbackHook) (see vuejs-validators repo)](https://github.com/zhorton34/vuejs-validators)
+- [form.validator().validateWithoutHooks() (see vuejs-validators repo)](https://github.com/zhorton34/vuejs-validators)
+- **Extend Validator Api**
+- [form.validator().macro(name, fn)](#macros)
+- [form.validator().forceMacro(name, fn)](#macros)
+- [form.validator().localMacro(name, fn)](#macros)
+- [form.validator().forceLocalMacro(name, fn)](#macros)
 
 ---
 
 ## Rules Api
 
 ---
-
 - [accepted](#accepted-rule)
 - [alpha](#alpha-rule)
 - [alpha_dash](#alpha_dash-rule)
@@ -212,6 +162,16 @@ export default {
 - [between](#between-rule)
 - [boolean](#boolean-rule)
 - [confirmed](#confirmed-rule)
+- [date](#date-rule)
+- [date_equals](#date-equals-rule)
+- [before (date)](#before-rule)
+- [before_or_equal (date)](#before-or-equal-rule)
+- [after (date)](#after-rule)
+- [after_or_equal (date)](#after-or-equal-rule)
+- [greater_than (numeric)](#greater-than-rule)
+- [gte (Greater than or equal numeric)](#gte-rule)
+- [less_than (numeric)](#less-then-rule)
+- [lte (Less than or equal numeric)](#lte-rule)
 - [different](#different-rule)
 - [digits](#digits-rule)
 - [digits_between](#digits_between-rule)
@@ -238,22 +198,4 @@ export default {
 - [url](#url-rule)
 - [within](#within-rule)
 
----
-
-## Error Messages Api
-
----
-
-- [form.errors().any()](#any-errors)
-- [form.errors().all()](#all-errors)
-- [form.errors().list()](#list-errors)
-- [form.errors().set(errors)](#set-errors)
-- [form.errors().forget()](#forget-errors)
-- [form.errors().has(field)](#has-error)
-- [form.errors().get(field)](#get-error)
-- [form.errors().list(field)](#list-error)
-- [form.errors().add(field, message)](#add-error)
-- [form.errors().set(field, messages)](#set-field-errors)
-- [form.errors().forget(field)](#forget-field)
-- [form.errors().getValidator()](#get-errors-validator)
 
