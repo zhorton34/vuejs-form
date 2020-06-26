@@ -9,7 +9,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 
-## <img src='https://api.github.com/images/icons/emoji/coffee.png' height='50' width='50' alt="waving that vuejs form introduction & purpose title"/> That Vue Form 
+## ![Waving](https://api.github.com/images/icons/emoji/coffee.png) That Vue Form 
 
 ![Vue Form AKA Vuejs Form Mission Statement For Building Vue Validation & Javascript Validated Forms](https://github.com/zhorton34/vuejs-form/raw/master/bundler/vuejs-form-purpose-statement.png "Vue JS Form Package Purpose Journal Text")
 
@@ -24,7 +24,7 @@
 
 ---
 
-## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon vuejs form installation title'/> Installation
+## ![Install](https://api.github.com/images/icons/emoji/point_down.png) Installation
 
 
 
@@ -48,7 +48,7 @@ yarn add vuejs-form --save
 
 ---
 
-## <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' /> Four Official Apis
+## ![Coffee](https://api.github.com/images/icons/emoji/coffee.png) Four Official Apis
 
 ---
 
