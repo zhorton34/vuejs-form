@@ -9,7 +9,15 @@
 module.exports = function access(form) {
   return new Proxy(form, {
     get: function get(target, key) {
-      return Object.keys(target.data).includes(key) ? target.data[key] : target[key];
+      if (Object.keys(target.data).includes(key)) {
+        if (!Object.keys(target).includes(key)) {
+          target[key] = null; // Initialize an empty key if the property does not exist.
+        }
+
+        return target.data[key];
+      }
+
+      return target[key];
     },
     set: function set(target, key, value) {
       target.data[key] = value;
