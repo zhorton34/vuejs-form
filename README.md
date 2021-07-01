@@ -9,7 +9,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 
 
-## ![Waving](https://api.github.com/images/icons/emoji/coffee.png) That Vue Form 
+## <img src='https://api.github.com/images/icons/emoji/coffee.png' height='50' width='50' alt="waving that vuejs form introduction & purpose title"/> That Vue Form 
 
 ![Vue Form AKA Vuejs Form Mission Statement For Building Vue Validation & Javascript Validated Forms](https://github.com/zhorton34/vuejs-form/raw/master/bundler/vuejs-form-purpose-statement.png "Vue JS Form Package Purpose Journal Text")
 
@@ -24,7 +24,7 @@
 
 ---
 
-## ![Install](https://api.github.com/images/icons/emoji/point_down.png) Installation
+## <img src='https://api.github.com/images/icons/emoji/point_down.png' height="50" width='50' alt='coffee icon vuejs form installation title'/> Installation
 
 
 
@@ -48,7 +48,7 @@ yarn add vuejs-form --save
 
 ---
 
-## ![Coffee](https://api.github.com/images/icons/emoji/coffee.png) Four Official Apis
+## <img src='https://api.github.com/images/icons/emoji/coffee.png' height="50" width='50' /> Four Official Apis
 
 ---
 
@@ -1849,42 +1849,57 @@ example.errors().get('name'); // Outputs: "Name is a required field, name must h
 The all method returns the underlying input object represented by the form:
 
 ```js
+
 form({ name: 'sarah', email: 'sarah@gmail.com' }).all();
 
 // { name: 'sarah', email: 'sarah@gmail.com' }
+
 ```
 
 #### `boolean(property)`
 
 The boolean method determines if the given field has a truthy or falsy values:
+
 #### Truthy values: true, "true", "yes", "on", "1", 1
+
 #### Falsy values: Everything else
 
 ```js
 
 const LoginForm = form({
+
     name: '',
+
     email: '',
+
     terms: ''
+
 })
 
 LoginForm.terms = true
+
 LoginForm.boolean('terms') // true
 
 LoginForm.terms = 'true'
+
 LoginForm.boolean('terms') // true
 
 LoginForm.terms = 'yes'
+
 LoginForm.boolean('terms') // true
 
 LoginForm.terms = 'on'
+
 LoginForm.boolean('terms') // true
 
 LoginForm.terms = "1"
+
 LoginForm.boolean('terms') // true
 
 LoginForm.terms = 1
+
 LoginForm.boolean('terms') // true
+
 ```
 
 
@@ -1893,12 +1908,15 @@ LoginForm.boolean('terms') // true
 The empty method determines if the input property exists but the value is empty:
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.empty('name') // false
+
 ExampleForm.empty('name', 'email') // false
 
 ExampleForm.empty('id') // true
+
 ```
 
 #### `except(one, two, three, ...)`
@@ -1906,18 +1924,27 @@ ExampleForm.empty('id') // true
 The except method grabs all of the inputs except the properties passed in:
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.except('id')
+
 /**
+
  * { name: 'sarah', email: 'sarah@gmail.com' }
+
 */
 
 ExampleForm.except('id', 'name')
+
 /**
+
  * { email: 'sarah@gmail.com' }
+
  */
+
 ```
+
 [View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/except.js)
 
 #### `fill({ key: value, keyTwo: valueTwo, etc... })`
@@ -1925,16 +1952,23 @@ ExampleForm.except('id', 'name')
 The fill method allows you to fill in new or empty values without overriding existing values:
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.fill({
+
     id: 2,
+
     name: 'tim',
+
     email: 'tim@gmail.com'
+
 })
 
 ExampleForm.all()
+
 // { id: 2, name: 'sarah', email: 'sarah@gmail.com' }
+
 ```
 
 #### `filled(propertyOne, propertyTwo, etc...)`
@@ -1942,44 +1976,69 @@ ExampleForm.all()
 The filled method determine if a value is filled (AKA not empty):
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.filled('id', 'name') // false
+
 ExampleForm.filled('name', 'email') // true
+
 ```
 
 #### `forceMacro(key, fn)`
+
 forceMacro can be used to extend form object and FORCIBLY OVERWRITE base form behavior (Use VERY cautiously and prefer macro over forceMacro)
 
 _NOTE: Use forceLocalMacro if you only want to extend a specific form instance instead of all form instances._ 
 
 ```js
+
 import form from 'vuejs-form';
 
 form().forceMacro('all', function () {
+
     return this.keys().reduce((list, field) => ({
+
             ...list,  
+
             [field]: { 
+
                 name: field, 
+
                 value: this.data[field],
+
                 errors: this.errors().list(field),
+
             }
+
         }), 
+
     {});
+
 })
 
 form({ name: 'sam' }).rules({ name: 'required' }).validate();
+
 ```
 
 ```
+
 # forceMacro implementation of form.all() Outputs
+
 {
+
     name: {
+
         value: 'sam',
+
         name: 'name',
+
         errors: ['Name field is required']
+
     }
+
 }
+
 ```
 
 [View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/forceMacro.js)
@@ -1989,10 +2048,13 @@ form({ name: 'sam' }).rules({ name: 'required' }).validate();
 The forget method will remove or "forget" a key value pair from the form input data
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.forget('id', 'name')
+
 ExampleForm.all() // { email: 'sarah@gmail.com' }
+
 ```
 
 #### `has(propertyOne, propertyTwo, etc...)`
@@ -2000,10 +2062,13 @@ ExampleForm.all() // { email: 'sarah@gmail.com' }
 The has method will determine if a key exists within the form input data
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.has('id', 'name') // true
+
 ExampleForm.has('something', 'id', 'name') // false
+
 ```
 
 #### `hasAny(propertyOne, propertyTwo, etc...)`
@@ -2011,10 +2076,13 @@ ExampleForm.has('something', 'id', 'name') // false
 The hasAny method will determine if a key has any of the given properties within the form input data
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.hasAny('id', 'name') // true
+
 ExampleForm.hasAny('something', 'id', 'name') // true
+
 ```
 
 #### `input(property, default = false)`
@@ -2022,11 +2090,15 @@ ExampleForm.hasAny('something', 'id', 'name') // true
 The input method will resolve a given input value or default to false. You can define a default as the second parameter
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.input('id') // false
+
 ExampleForm.input('id', 1) // 1
+
 ExampleForm.input('name', 'tim') // sarah
+
 ```
 
 #### `keys()`
@@ -2034,9 +2106,11 @@ ExampleForm.input('name', 'tim') // sarah
 The keys method will resolve an array of the input keys
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.keys() // ['id', 'name', 'email']
+
 ```
 
 
@@ -2045,15 +2119,21 @@ ExampleForm.keys() // ['id', 'name', 'email']
 The macro method can be used to extend the forms base behavior with custom methods/functions
 
 _NOTE: Use localMacro if you only want to extend a specific form instance instead of all form instances._
+
  
+
 ```js
+
 import form from 'vuejs-form';
 
 form(data).macro('count', () => {
+
     return this.keys().length;
+
 });
 
 // form.count() === form.keys().length
+
 ```
 
 [View source on GitHub](https://github.com/zhorton34/vuejs-form.js/blob/master/src/methods/macro.js)
@@ -2063,10 +2143,13 @@ form(data).macro('count', () => {
 The make method will "make" a new form when used on the underlying class (With the proxy used on all forms)
 
 ```js
+
 import { VueForm } from 'vuejs-form'
 
 const ExampleForm = VueForm.make({ id: '', name: 'sarah', email: 'sarah@gmail.com' })
+
 ExampleForm.all() // { id: '', name: 'sarah', email: 'sarah@gmail.com' }
+
 ```
 
 
@@ -2075,12 +2158,17 @@ ExampleForm.all() // { id: '', name: 'sarah', email: 'sarah@gmail.com' }
 The missing method will determine if the form is missing the following properties
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' })
 
 ExampleForm.missing('id') // false
+
 ExampleForm.missing('something') // true
+
 ExampleForm.missing('name', 'email') // false
+
 ExampleForm.missing('name', 'email', 'something') // true
+
 ```
 
 
@@ -2089,11 +2177,15 @@ ExampleForm.missing('name', 'email', 'something') // true
 The only method will return an object of "only" the input properties you defined
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' })
 
 ExampleForm.only('name', 'email') // { name: 'sarah', email: 'sarah@gmail.com' }
+
 ExampleForm.only('id', 'name') // { id: '', name: 'sarah' }
+
 ExampleForm.only('id') // { id: '' }
+
 ```
 
 
@@ -2102,17 +2194,25 @@ ExampleForm.only('id') // { id: '' }
 The set method allows you to set new and override previous values:
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.set({
+
     id: 2,
+
     name: 'tim',
+
     email: 'tim@gmail.com',
+
     password: 'secret',
+
 })
 
 ExampleForm.all()
+
 // { id: 2, name: 'tim', email: 'tim@gmail.com', password: 'secret' }
+
 ```
 
 #### `toArray()`
@@ -2120,15 +2220,23 @@ ExampleForm.all()
 The toArray method transforms the input into an array of key value pair objects:
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.toArray()
+
 /**
+
     [
+
         { key: 'id', value: '' },
+
         { key: 'name', value: 'sarah' },
+
         { key: 'email', value: 'sarah@gmail.com' }
+
     ]
+
 */
 
 ```
@@ -2138,17 +2246,27 @@ ExampleForm.toArray()
 The wrap method allows you to wrap the input within a given object key:
 
 ```js
+
 const ExampleForm = form({ id: '', name: 'sarah', email: 'sarah@gmail.com' });
 
 ExampleForm.wrap('data')
+
 /**
+
   {
+
     data: {
+
         id: '',
+
         name: 'sarah',
+
         email: 'sarah@gmail.com'
+
     }
+
   }
+
 */
 
 ```
@@ -3249,5 +3367,4 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ---
 
 MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/c/cleancodestudio)
-
 [Clean Code Studio ~ Clean Code Clean Life ~ Simplify](https://cleancode.studio)
