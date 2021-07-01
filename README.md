@@ -3052,6 +3052,7 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 ## Change Log
 
 ---
+- [Release 1.3.0 (Minor)](#release-130)
 - [Release 1.2.9 (Minor)](#release-129)
 - [Release 1.2.8 (Minor)](#release-128)
 - [Release 1.2.7 (Minor)](#release-127)
@@ -3064,6 +3065,15 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 - [Release 1.2.0 (Major)](#release-120)
 - [Release 1.1.1](#release-111)
 - [Release 1.1.0](#release-110)
+
+---
+
+### Release 1.3.0
+
+---
+- Fixed [first keypress not working bug](https://github.com/zhorton34/vuejs-form/issues/20)
+
+---
 
 ---
 
@@ -3238,4 +3248,6 @@ send an e-mail to Zachary Horton via zak@cleancode.studio. All security vulnerab
 
 ---
 
-MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/channel/UCq0m4ebGqurYQLwD-1aYsvg)
+MIT © [Zachary Horton (Clean Code Studio)](https://www.youtube.com/c/cleancodestudio)
+
+[Clean Code Studio ~ Clean Code Clean Life ~ Simplify](https://cleancode.studio)
